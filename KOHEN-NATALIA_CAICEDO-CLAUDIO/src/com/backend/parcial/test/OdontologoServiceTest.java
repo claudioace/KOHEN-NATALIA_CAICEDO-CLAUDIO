@@ -10,7 +10,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class OdontologoServiceTest {
     private OdontologoService odontologoService;
@@ -33,11 +34,12 @@ public class OdontologoServiceTest {
     }
 
     @Test
-    public void deberiaRetornarListaNoVaciaH2(){
+    public void deberiaRetornarListaNoVaciaH2() {
         assertFalse(odontologoService.listarOdontologos().isEmpty());
     }
+
     @Test
-    public void deberiaRetornarListaNoVaciaEnMemoria(){
+    public void deberiaRetornarListaNoVaciaEnMemoria() {
         odontologoService = new OdontologoService(new OdontologoDaoEnMemoria(new ArrayList<>()));
         Odontologo odontologoAPersistir = new Odontologo(333, "Juan", "Perez");
         Odontologo odontologo = odontologoService.registrarOdontologo(odontologoAPersistir);

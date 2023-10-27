@@ -20,9 +20,9 @@ public class OdontologoDaoEnMemoria implements IDao<Odontologo> {
     @Override
     public Odontologo registrar(Odontologo odontologo) {
         Odontologo odontologoGuardado = null;
-        int id = odontologoMemoria.size() +1;
+        int id = odontologoMemoria.size() + 1;
         odontologoMemoria.add(odontologo);
-        odontologoGuardado = new Odontologo(id, odontologo.getNumeroMatricula(), odontologo.getNombre(),odontologo.getApellido());
+        odontologoGuardado = new Odontologo(id, odontologo.getNumeroMatricula(), odontologo.getNombre(), odontologo.getApellido());
         LOGGER.info("Odontologo guardado: " + odontologoGuardado);
 
         return odontologoGuardado;
