@@ -1,6 +1,7 @@
 package com.backend.parcial.test;
 
 import com.backend.parcial.dao.impl.OdontologoDaoEnMemoria;
+import com.backend.parcial.dao.impl.OdontologoDaoH2;
 import com.backend.parcial.model.Odontologo;
 import com.backend.parcial.service.OdontologoService;
 import org.junit.Test;
@@ -35,7 +36,9 @@ public class OdontologoServiceTest {
 
     @Test
     public void deberiaRetornarListaNoVaciaH2() {
+        odontologoService = new OdontologoService(new OdontologoDaoH2());
         assertFalse(odontologoService.listarOdontologos().isEmpty());
+
     }
 
     @Test

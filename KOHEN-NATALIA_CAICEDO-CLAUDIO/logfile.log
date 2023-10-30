@@ -1,1 +1,40 @@
 [2023-10-26 22:51:56] [ INFO ] [OdontologoDaoEnMemoria:26] Odontologo guardado: id=1, numeroMatricula=333, nombre='Juan', apellido='Perez
+[2023-10-26 23:00:07] [ INFO ] [OdontologoDaoEnMemoria:26] Odontologo guardado: id=1, numeroMatricula=333, nombre='Juan', apellido='Perez
+[2023-10-30 19:45:25] [ ERROR] [OdontologoDaoH2:89] Table "ODONTOLOGOS" not found (this database is empty); SQL statement:
+SELECT * FROM ODONTOLOGOS [42104-224]
+[2023-10-30 19:46:12] [ ERROR] [OdontologoDaoH2:89] Table "ODONTOLOGOS" not found (this database is empty); SQL statement:
+SELECT * FROM ODONTOLOGOS [42104-224]
+[2023-10-30 19:46:49] [ ERROR] [OdontologoDaoH2:89] Table "ODONTOLOGOS" not found (this database is empty); SQL statement:
+SELECT * FROM ODONTOLOGOS [42104-224]
+[2023-10-30 19:47:36] [ ERROR] [OdontologoDaoH2:89] Table "ODONTOLOGOS" not found (this database is empty); SQL statement:
+SELECT * FROM ODONTOLOGOS [42104-224]
+[2023-10-30 19:48:45] [ ERROR] [OdontologoDaoH2:89] Table "ODONTOLOGOS" not found (this database is empty); SQL statement:
+SELECT * FROM ODONTOLOGOS [42104-224]
+[2023-10-30 19:49:21] [ ERROR] [OdontologoDaoH2:89] Table "ODONTOLOGOS" not found (this database is empty); SQL statement:
+SELECT * FROM ODONTOLOGOS [42104-224]
+[2023-10-30 19:54:53] [ INFO ] [H2Connection:14] Conectado
+[2023-10-30 19:54:53] [ ERROR] [OdontologoDaoH2:89] Table "ODONTOLOGOS" not found (this database is empty); SQL statement:
+SELECT * FROM ODONTOLOGOS [42104-224]
+[2023-10-30 19:54:53] [ INFO ] [OdontologoDaoEnMemoria:26] Odontologo guardado: id=1, numeroMatricula=333, nombre='Juan', apellido='Perez
+[2023-10-30 19:56:40] [ INFO ] [OdontologoDaoH2:75] entró al TRY
+[2023-10-30 19:56:40] [ INFO ] [H2Connection:14] Conectado
+[2023-10-30 19:56:41] [ ERROR] [OdontologoDaoH2:90] Table "ODONTOLOGOS" not found (this database is empty); SQL statement:
+SELECT * FROM ODONTOLOGOS [42104-224]
+[2023-10-30 19:56:41] [ INFO ] [OdontologoDaoEnMemoria:26] Odontologo guardado: id=1, numeroMatricula=333, nombre='Juan', apellido='Perez
+[2023-10-30 20:03:12] [ INFO ] [OdontologoDaoH2:75] entró al TRY
+[2023-10-30 20:03:12] [ INFO ] [H2Connection:14] Conectado
+[2023-10-30 20:03:13] [ ERROR] [OdontologoDaoH2:90] Table "ODONTOLOGOS" not found (this database is empty); SQL statement:
+SELECT * FROM ODONTOLOGOS [42104-224]
+[2023-10-30 20:03:13] [ INFO ] [OdontologoDaoEnMemoria:26] Odontologo guardado: id=1, numeroMatricula=333, nombre='Juan', apellido='Perez
+[2023-10-30 20:12:38] [ INFO ] [OdontologoDaoH2:75] entró al TRY
+[2023-10-30 20:12:38] [ INFO ] [H2Connection:14] Conectado
+[2023-10-30 20:12:39] [ INFO ] [OdontologoDaoH2:87] Listado de Odontologos: [id=1, numeroMatricula=111, nombre='Natalia', apellido='Kohen, id=2, numeroMatricula=222, nombre='Claudio', apellido='Caicedo]
+[2023-10-30 20:12:39] [ INFO ] [OdontologoDaoEnMemoria:26] Odontologo guardado: id=1, numeroMatricula=333, nombre='Juan', apellido='Perez
+[2023-10-30 20:13:37] [ INFO ] [OdontologoDaoH2:75] entró al TRY
+[2023-10-30 20:13:37] [ INFO ] [H2Connection:14] Conectado
+[2023-10-30 20:13:37] [ INFO ] [OdontologoDaoH2:87] Listado de Odontologos: [id=1, numeroMatricula=111, nombre='Natalia', apellido='Kohen, id=2, numeroMatricula=222, nombre='Claudio', apellido='Caicedo]
+[2023-10-30 20:13:37] [ INFO ] [OdontologoDaoEnMemoria:26] Odontologo guardado: id=1, numeroMatricula=333, nombre='Juan', apellido='Perez
+[2023-10-30 20:14:37] [ INFO ] [OdontologoDaoH2:75] entró al TRY
+[2023-10-30 20:14:37] [ INFO ] [H2Connection:14] Conectado
+[2023-10-30 20:14:38] [ INFO ] [OdontologoDaoH2:87] Listado de Odontologos: [id=1, numeroMatricula=111, nombre='Natalia', apellido='Kohen, id=2, numeroMatricula=222, nombre='Claudio', apellido='Caicedo]
+[2023-10-30 20:14:38] [ INFO ] [OdontologoDaoEnMemoria:26] Odontologo guardado: id=1, numeroMatricula=333, nombre='Juan', apellido='Perez

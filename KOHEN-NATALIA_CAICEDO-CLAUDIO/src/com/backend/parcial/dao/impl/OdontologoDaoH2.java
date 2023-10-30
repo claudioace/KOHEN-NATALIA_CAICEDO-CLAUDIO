@@ -72,6 +72,7 @@ public class OdontologoDaoH2 implements IDao<Odontologo> {
         List<Odontologo> odontologos = new ArrayList<>();
         Connection connection = null;
         try {
+            LOGGER.info("entró al TRY");
             connection = H2Connection.getConnection();
             String SELECT = "SELECT * FROM ODONTOLOGOS";
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT);
