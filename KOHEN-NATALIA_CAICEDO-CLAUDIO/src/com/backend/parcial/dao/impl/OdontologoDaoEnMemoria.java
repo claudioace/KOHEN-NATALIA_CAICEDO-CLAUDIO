@@ -1,4 +1,4 @@
-package com.backend.parcial.dao.impl;
+/*package com.backend.parcial.dao.impl;
 
 import com.backend.parcial.dao.IDao;
 import com.backend.parcial.model.Odontologo;
@@ -34,3 +34,4 @@ public class OdontologoDaoEnMemoria implements IDao<Odontologo> {
         return odontologoMemoria;
     }
 }
+*/

@@ -9,10 +9,11 @@ import java.sql.SQLException;
 
 public class H2Connection {
     private static final Logger LOGGER = Logger.getLogger(H2Connection.class);
+
     public static Connection getConnection() throws ClassNotFoundException, SQLException {
         Class.forName("org.h2.Driver");
         LOGGER.info("Conectado");
-        return DriverManager.getConnection("jdbc:h2:~/odontologos", "sa", "sa");
+        return DriverManager.getConnection("jdbc:h2:~/clinica", "sa", "sa");
 
     }
 

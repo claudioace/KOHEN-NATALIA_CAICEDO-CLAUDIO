@@ -1,18 +1,16 @@
 package com.backend.parcial.test;
 
-import com.backend.parcial.dao.impl.OdontologoDaoEnMemoria;
+//import com.backend.parcial.dao.impl.OdontologoDaoEnMemoria;
+
 import com.backend.parcial.dao.impl.OdontologoDaoH2;
-import com.backend.parcial.model.Odontologo;
 import com.backend.parcial.service.OdontologoService;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeAll;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class OdontologoServiceTest {
     private OdontologoService odontologoService;
@@ -22,7 +20,7 @@ public class OdontologoServiceTest {
         Connection connection = null;
         try {
             Class.forName("org.h2.Driver");
-            connection = DriverManager.getConnection("jdbc:h2:~/odontologos;INIT=RUNSCRIPT FROM 'create.sql'", "sa", "sa");
+            connection = DriverManager.getConnection("jdbc:h2:~/clinica;INIT=RUNSCRIPT FROM 'create.sql'", "sa", "sa");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -41,13 +39,15 @@ public class OdontologoServiceTest {
 
     }
 
-    @Test
+   /*
+   @Test
     public void deberiaRetornarListaNoVaciaEnMemoria() {
         odontologoService = new OdontologoService(new OdontologoDaoEnMemoria(new ArrayList<>()));
         Odontologo odontologoAPersistir = new Odontologo(333, "Juan", "Perez");
         Odontologo odontologo = odontologoService.registrarOdontologo(odontologoAPersistir);
         assertNotNull(odontologo.getId()); //Si fue registrado exitosamente, deberia tener un id
     }
+    */
 
 
 }
