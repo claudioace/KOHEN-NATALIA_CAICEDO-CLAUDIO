@@ -33,7 +33,7 @@ public class OdontologoServiceTest {
     }
 
     @Test
-    public void deberiaRetornarListaNoVaciaH2() {
+    public void deberiaRetornarListaNoVaciaOdontologoH2() {
         odontologoService = new OdontologoService(new OdontologoDaoH2());
         assertFalse(odontologoService.listarOdontologos().isEmpty());
 

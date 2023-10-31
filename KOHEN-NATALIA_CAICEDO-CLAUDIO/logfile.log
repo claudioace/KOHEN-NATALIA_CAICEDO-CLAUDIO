@@ -38,3 +38,13 @@ SELECT * FROM ODONTOLOGOS [42104-224]
 [2023-10-30 20:14:37] [ INFO ] [H2Connection:14] Conectado
 [2023-10-30 20:14:38] [ INFO ] [OdontologoDaoH2:87] Listado de Odontologos: [id=1, numeroMatricula=111, nombre='Natalia', apellido='Kohen, id=2, numeroMatricula=222, nombre='Claudio', apellido='Caicedo]
 [2023-10-30 20:14:38] [ INFO ] [OdontologoDaoEnMemoria:26] Odontologo guardado: id=1, numeroMatricula=333, nombre='Juan', apellido='Perez
+[2023-10-30 21:17:01] [ INFO ] [H2Connection:15] Conectado
+[2023-10-30 21:17:01] [ ERROR] [PacienteDaoH2:92] Tabla "PACIENTES" no encontrada
+Table "PACIENTES" not found; SQL statement:
+SELECT * FROM PACIENTES [42102-224]
+[2023-10-30 21:18:13] [ INFO ] [H2Connection:15] Conectado
+[2023-10-30 21:18:13] [ INFO ] [PacienteDaoH2:89] Listado de Pacientes: []
+[2023-10-30 21:18:34] [ INFO ] [H2Connection:15] Conectado
+[2023-10-30 21:18:34] [ INFO ] [PacienteDaoH2:89] Listado de Pacientes: []
+[2023-10-30 21:18:59] [ INFO ] [H2Connection:15] Conectado
+[2023-10-30 21:18:59] [ INFO ] [PacienteDaoH2:89] Listado de Pacientes: [Id: 1 - Nombre: Emiliano - Apellido: Cellilli - DNI: 123456 - Fechas de ingreso: 2023-05-24]
