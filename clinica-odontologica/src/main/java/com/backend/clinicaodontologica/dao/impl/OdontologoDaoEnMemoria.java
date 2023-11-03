@@ -1,7 +1,7 @@
-/*package com.backend.parcial.dao.impl;
+/*package com.backend.clinicaodontologica.dao.impl;
 
-import com.backend.parcial.dao.IDao;
-import com.backend.parcial.model.Odontologo;
+import com.backend.clinicaodontologica.dao.IDao;
+import com.backend.clinicaodontologica.model.Odontologo;
 import org.apache.log4j.Logger;
 
 import java.util.List;

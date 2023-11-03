@@ -1,9 +1,9 @@
-package com.backend.parcial.test;
+package com.backend.clinicaodontologica.test;
 
-//import com.backend.parcial.dao.impl.OdontologoDaoEnMemoria;
+//import com.backend.clinicaodontologica.dao.impl.OdontologoDaoEnMemoria;
 
-import com.backend.parcial.dao.impl.OdontologoDaoH2;
-import com.backend.parcial.service.OdontologoService;
+import com.backend.clinicaodontologica.dao.impl.OdontologoDaoH2;
+import com.backend.clinicaodontologica.service.OdontologoService;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeAll;
 

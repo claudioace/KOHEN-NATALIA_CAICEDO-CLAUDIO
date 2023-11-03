@@ -1,16 +1,19 @@
-package com.backend.parcial.dao.impl;
+package com.backend.clinicaodontologica.dao.impl;
 
-import com.backend.parcial.dao.H2Connection;
-import com.backend.parcial.dao.IDao;
-import com.backend.parcial.model.Odontologo;
-import org.apache.log4j.Logger;
+import com.backend.clinicaodontologica.dao.H2Connection;
+import com.backend.clinicaodontologica.dao.IDao;
+import com.backend.clinicaodontologica.model.Odontologo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class OdontologoDaoH2 implements IDao<Odontologo> {
-    private final Logger LOGGER = Logger.getLogger(OdontologoDaoH2.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(OdontologoDaoH2.class);
 
 
     @Override
@@ -101,6 +104,11 @@ public class OdontologoDaoH2 implements IDao<Odontologo> {
 
 
         return odontologos;
+    }
+
+    @Override
+    public Odontologo buscarPorId(int id) {
+        return null;
     }
 
     private Odontologo crearObjetoOdontologo(ResultSet resultSet) throws SQLException {

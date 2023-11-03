@@ -1,16 +1,19 @@
-package com.backend.parcial.dao.impl;
+package com.backend.clinicaodontologica.dao.impl;
 
-import com.backend.parcial.dao.H2Connection;
-import com.backend.parcial.dao.IDao;
-import com.backend.parcial.model.Paciente;
-import org.apache.log4j.Logger;
+import com.backend.clinicaodontologica.dao.H2Connection;
+import com.backend.clinicaodontologica.dao.IDao;
+import com.backend.clinicaodontologica.model.Paciente;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class PacienteDaoH2 implements IDao<Paciente> {
-    private final Logger LOGGER = Logger.getLogger(PacienteDaoH2.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(PacienteDaoH2.class);
 
 
     @Override
@@ -103,6 +106,42 @@ public class PacienteDaoH2 implements IDao<Paciente> {
 
 
         return pacientes;
+    }
+
+    @Override
+    public Paciente buscarPorId(int id) {
+        Connection connection = null;
+        Paciente paciente = null;
+
+        try{
+            connection = H2Connection.getConnection();
+            String SELECT = "SELECT * FROM PACIENTES WHERE ID = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                paciente = crearObjetoPaciente(resultSet);
+            }
+
+            if(paciente == null) LOGGER.error("No se ha encontrado el paciente con id: " + id);
+            else LOGGER.info("Se ha encontrado el paciente: " + paciente);
+
+
+
+        } catch (Exception e){
+            LOGGER.error(e.getMessage());
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception ex){
+                LOGGER.error("Ha ocurrido un error al intentar cerrar la bdd. " + ex.getMessage());
+                ex.printStackTrace();
+            }
+        }
+
+
+        return paciente;
     }
 
     private Paciente crearObjetoPaciente(ResultSet resultSet) throws SQLException {

@@ -1,8 +1,8 @@
-package com.backend.parcial.test;
+package com.backend.clinicaodontologica.test;
 
 
-import com.backend.parcial.dao.impl.PacienteDaoH2;
-import com.backend.parcial.service.PacienteService;
+import com.backend.clinicaodontologica.dao.impl.PacienteDaoH2;
+import com.backend.clinicaodontologica.service.PacienteService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -30,8 +30,9 @@ class PacienteServiceTest {
             }
         }
     }
+
     @Test
-    public void deberiaRetornarListaNoVaciaPacienteH2(){
+    public void deberiaRetornarListaNoVaciaPacienteH2() {
         pacienteService = new PacienteService(new PacienteDaoH2());
         assertFalse(pacienteService.listarPacientes().isEmpty());
     }

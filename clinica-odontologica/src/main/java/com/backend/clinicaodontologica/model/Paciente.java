@@ -1,4 +1,4 @@
-package com.backend.parcial.model;
+package com.backend.clinicaodontologica.model;
 
 import java.time.LocalDate;
 
