@@ -2,6 +2,7 @@ package com.backend.clinicaodontologica.dao.impl;
 
 import com.backend.clinicaodontologica.dao.H2Connection;
 import com.backend.clinicaodontologica.dao.IDao;
+import com.backend.clinicaodontologica.model.Domicilio;
 import com.backend.clinicaodontologica.model.Paciente;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,14 +14,17 @@ import java.util.List;
 
 @Repository
 public class PacienteDaoH2 implements IDao<Paciente> {
+    private DomicilioDaoH2 domicilioDaoH2;
     private final Logger LOGGER = LoggerFactory.getLogger(PacienteDaoH2.class);
 
 
     @Override
     public Paciente registrar(Paciente paciente) {
 
+
         Paciente pacienteRegistrado = null;
         Connection connection = null;
+
 
         try {
             connection = H2Connection.getConnection();
@@ -28,16 +32,19 @@ public class PacienteDaoH2 implements IDao<Paciente> {
 
             String INSERT = "INSERT INTO PACIENTES (NOMBRE, APELLIDO, DOMICILIO, DNI, FECHAINGRESO) VALUES (?, ?, ?, ?, ?)";
 
-            PreparedStatement preparedStatement = connection.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
+            domicilioDaoH2 = new DomicilioDaoH2();
+            Domicilio domicilioRegistrado = domicilioDaoH2.registrar(paciente.getDomicilio());
 
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO PACIENTES (NOMBRE, APELLIDO, DNI, FECHA, DOMICILIO_ID) VALUES (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, paciente.getNombre());
             preparedStatement.setString(2, paciente.getApellido());
-            preparedStatement.setString(3, paciente.getDomicilio());
-            preparedStatement.setInt(4, paciente.getDni());
-            preparedStatement.setDate(5, Date.valueOf(paciente.getFechaIngreso()));
+            preparedStatement.setInt(3, paciente.getDni());
+            preparedStatement.setDate(4, Date.valueOf(paciente.getFechaIngreso()));
+            preparedStatement.setInt(5, domicilioRegistrado.getId());
             preparedStatement.execute();
 
-            pacienteRegistrado = new Paciente(paciente.getNombre(), paciente.getApellido(), paciente.getDomicilio(), paciente.getDni(), paciente.getFechaIngreso());
+
+            pacienteRegistrado = new Paciente(paciente.getNombre(), paciente.getApellido(), paciente.getDni(), paciente.getFechaIngreso(), domicilioRegistrado);
 
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             while (resultSet.next()) {
@@ -184,6 +191,9 @@ public class PacienteDaoH2 implements IDao<Paciente> {
 
 
     private Paciente crearObjetoPaciente(ResultSet resultSet) throws SQLException {
-        return new Paciente(resultSet.getInt("id"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getString("domicilio"), resultSet.getInt("dni"), resultSet.getDate("fechaingreso").toLocalDate());
+        Domicilio domicilio = new DomicilioDaoH2().buscarPorId(resultSet.getInt("domicilio_id"));
+
+        return new Paciente(resultSet.getInt("id"), resultSet.getString("nombre"), resultSet.getString("apellido"), resultSet.getInt("dni"), resultSet.getDate("fecha").toLocalDate(), domicilio);
     }
+
 }

@@ -6,26 +6,27 @@ public class Paciente {
     private int id;
     private String nombre;
     private String apellido;
-    private String domicilio;
+
     private int dni;
     private LocalDate fechaIngreso;
+    private Domicilio domicilio;
 
 
-    public Paciente(int id, String nombre, String apellido, String domicilio, int dni, LocalDate fechaIngreso) {
+    public Paciente(int id, String nombre, String apellido, int dni, LocalDate fechaIngreso, Domicilio domicilio) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.domicilio = domicilio;
         this.dni = dni;
         this.fechaIngreso = fechaIngreso;
+        this.domicilio = domicilio;
     }
 
-    public Paciente(String nombre, String apellido, String domicilio, int dni, LocalDate fechaIngreso) {
+    public Paciente( String nombre, String apellido, int dni, LocalDate fechaIngreso, Domicilio domicilio) {
         this.nombre = nombre;
         this.apellido = apellido;
-        this.domicilio = domicilio;
         this.dni = dni;
         this.fechaIngreso = fechaIngreso;
+        this.domicilio = domicilio;
     }
 
     public int getId() {
@@ -52,13 +53,6 @@ public class Paciente {
         this.apellido = apellido;
     }
 
-    public String getDomicilio() {
-        return domicilio;
-    }
-
-    public void setDomicilio(String domicilio) {
-        this.domicilio = domicilio;
-    }
 
     public int getDni() {
         return dni;
@@ -74,6 +68,14 @@ public class Paciente {
 
     public void setFechaIngreso(LocalDate fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
+    }
+
+    public Domicilio getDomicilio() {
+        return domicilio;
+    }
+
+    public void setDomicilio(Domicilio domicilio) {
+        this.domicilio = domicilio;
     }
 
     @Override
