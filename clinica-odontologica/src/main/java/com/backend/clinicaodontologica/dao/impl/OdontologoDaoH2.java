@@ -111,6 +111,11 @@ public class OdontologoDaoH2 implements IDao<Odontologo> {
         return null;
     }
 
+    @Override
+    public Odontologo actualizar(Odontologo odontologo) {
+        return null;
+    }
+
     private Odontologo crearObjetoOdontologo(ResultSet resultSet) throws SQLException {
         return new Odontologo(resultSet.getInt("id"), resultSet.getInt("numeroMatricula"), resultSet.getString("nombre"), resultSet.getString("apellido"));
 
