@@ -3,18 +3,18 @@ package com.backend.clinicaodontologica.test;
 //import com.backend.clinicaodontologica.dao.impl.OdontologoDaoEnMemoria;
 
 import com.backend.clinicaodontologica.dao.impl.OdontologoDaoH2;
-import com.backend.clinicaodontologica.service.OdontologoService;
+import com.backend.clinicaodontologica.service.impl.OdontologoService;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
+
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+
 
 public class OdontologoServiceTest {
     private OdontologoService odontologoService;
-
+/*
     @BeforeAll
     static void doBefore() {
         Connection connection = null;
@@ -39,7 +39,7 @@ public class OdontologoServiceTest {
 
     }
 
-   /*
+
    @Test
     public void deberiaRetornarListaNoVaciaEnMemoria() {
         odontologoService = new OdontologoService(new OdontologoDaoEnMemoria(new ArrayList<>()));

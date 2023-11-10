@@ -1,4 +1,4 @@
-package com.backend.clinicaodontologica.utils;
+package com.backend.clinicaodontologica;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

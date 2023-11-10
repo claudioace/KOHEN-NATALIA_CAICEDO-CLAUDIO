@@ -1,15 +1,8 @@
 package com.backend.clinicaodontologica.test;
 
 
-import com.backend.clinicaodontologica.dao.impl.PacienteDaoH2;
-import com.backend.clinicaodontologica.service.PacienteService;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import com.backend.clinicaodontologica.service.impl.PacienteService;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class PacienteServiceTest {
     private PacienteService pacienteService;
