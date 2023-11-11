@@ -14,9 +14,8 @@ import java.util.List;
 
 @Repository
 public class PacienteDaoH2 implements IDao<Paciente> {
-    private DomicilioDaoH2 domicilioDaoH2;
     private final Logger LOGGER = LoggerFactory.getLogger(PacienteDaoH2.class);
-
+    private DomicilioDaoH2 domicilioDaoH2;
 
     @Override
     public Paciente registrar(Paciente paciente) {
@@ -120,28 +119,27 @@ public class PacienteDaoH2 implements IDao<Paciente> {
         Connection connection = null;
         Paciente paciente = null;
 
-        try{
+        try {
             connection = H2Connection.getConnection();
             String SELECT = "SELECT * FROM PACIENTES WHERE ID = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT);
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 paciente = crearObjetoPaciente(resultSet);
             }
 
-            if(paciente == null) LOGGER.error("No se ha encontrado el paciente con id: " + id);
+            if (paciente == null) LOGGER.error("No se ha encontrado el paciente con id: " + id);
             else LOGGER.info("Se ha encontrado el paciente: " + paciente);
 
 
-
-        } catch (Exception e){
+        } catch (Exception e) {
             LOGGER.error(e.getMessage());
             e.printStackTrace();
         } finally {
             try {
                 connection.close();
-            } catch (Exception ex){
+            } catch (Exception ex) {
                 LOGGER.error("Ha ocurrido un error al intentar cerrar la bdd. " + ex.getMessage());
                 ex.printStackTrace();
             }
@@ -160,7 +158,7 @@ public class PacienteDaoH2 implements IDao<Paciente> {
             connection.setAutoCommit(false);
 
             PreparedStatement ps = connection.prepareStatement("UPDATE PACIENTES SET NOMBRE = ?, APELLIDO = ?, DNI = ?, FECHA = ?, DOMICILIO_ID = ? WHERE ID = ?");
-            ps.setString(1,pacienteModificado.getNombre());
+            ps.setString(1, pacienteModificado.getNombre());
             ps.setString(2, pacienteModificado.getApellido());
             ps.setInt(3, pacienteModificado.getDni());
             ps.setDate(4, Date.valueOf(pacienteModificado.getFechaIngreso()));
@@ -180,14 +178,13 @@ public class PacienteDaoH2 implements IDao<Paciente> {
         } finally {
             try {
                 connection.close();
-            } catch (Exception ex){
+            } catch (Exception ex) {
                 LOGGER.error("Ha ocurrido un error al intentar cerrar la bdd. " + ex.getMessage());
                 ex.printStackTrace();
             }
         }
         return pacienteModificado;
     }
-
 
 
     private Paciente crearObjetoPaciente(ResultSet resultSet) throws SQLException {

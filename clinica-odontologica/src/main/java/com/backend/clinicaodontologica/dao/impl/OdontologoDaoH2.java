@@ -3,6 +3,7 @@ package com.backend.clinicaodontologica.dao.impl;
 import com.backend.clinicaodontologica.dao.H2Connection;
 import com.backend.clinicaodontologica.dao.IDao;
 import com.backend.clinicaodontologica.model.Odontologo;
+import com.backend.clinicaodontologica.model.Odontologo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -25,7 +26,7 @@ public class OdontologoDaoH2 implements IDao<Odontologo> {
             connection = H2Connection.getConnection();
             connection.setAutoCommit(false);
 
-            String INSERT = "INSERT INTO ODONTOLOGOS (NUMEROMATRICULA, NOMBRE, APELLIDO) VALUES (?, ?, ?)";
+            String INSERT = "INSERT INTO ODONTOLOGOS (NUMERONUMEROMATRICULA, NOMBRE, APELLIDO) VALUES (?, ?, ?)";
 
             PreparedStatement preparedStatement = connection.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
 
@@ -108,12 +109,74 @@ public class OdontologoDaoH2 implements IDao<Odontologo> {
 
     @Override
     public Odontologo buscarPorId(int id) {
-        return null;
+
+        Connection connection = null;
+        Odontologo odontologo = null;
+
+        try {
+            connection = H2Connection.getConnection();
+            String SELECT = "SELECT * FROM ODONTOLOGOS WHERE ID = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT);
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                odontologo = crearObjetoOdontologo(resultSet);
+            }
+
+            if (odontologo == null) LOGGER.error("No se ha encontrado el odontologo con id: " + id);
+            else LOGGER.info("Se ha encontrado el odontologo: " + odontologo);
+
+
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception ex) {
+                LOGGER.error("Ha ocurrido un error al intentar cerrar la bdd. " + ex.getMessage());
+                ex.printStackTrace();
+            }
+        }
+
+
+        return odontologo;
     }
 
     @Override
-    public Odontologo actualizar(Odontologo odontologo) {
-        return null;
+    public Odontologo actualizar(Odontologo odontologoModificado) {
+
+
+        Connection connection = null;
+        try {
+            connection = H2Connection.getConnection();
+            connection.setAutoCommit(false);
+
+            PreparedStatement ps = connection.prepareStatement("UPDATE ODONTOLOGOS SET NUMEROMATRICULA = ?, NOMBRE = ?, APELLIDO = ? WHERE ID = ?");
+            ps.setInt(1, odontologoModificado.getNumeroMatricula());
+            ps.setString(2, odontologoModificado.getNombre());
+            ps.setString(3, odontologoModificado.getApellido());
+            ps.setInt(6, odontologoModificado.getId());
+            ps.execute();
+
+            connection.commit();
+            LOGGER.warn("El odontologo con id " + odontologoModificado.getId() + "ha sido modificado: " + odontologoModificado);
+
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage());
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            LOGGER.error(e.getMessage());
+            e.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception ex) {
+                LOGGER.error("Ha ocurrido un error al intentar cerrar la bdd. " + ex.getMessage());
+                ex.printStackTrace();
+            }
+        }
+        return odontologoModificado;
     }
 
     private Odontologo crearObjetoOdontologo(ResultSet resultSet) throws SQLException {

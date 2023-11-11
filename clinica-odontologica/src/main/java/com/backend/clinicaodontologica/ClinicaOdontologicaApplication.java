@@ -1,9 +1,11 @@
 package com.backend.clinicaodontologica;
 
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -19,23 +21,27 @@ public class ClinicaOdontologicaApplication {
         logger.info("ClinicaOdontologica is now running...");
     }
 
-    private static void crearTabla(){
+    private static void crearTabla() {
         Connection connection = null;
         try {
             Class.forName("org.h2.Driver");
             connection = DriverManager.getConnection("jdbc:h2:~/clinica;INIT=RUNSCRIPT FROM 'create.sql'", "sa", "sa");
 
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
                 connection.close();
-            } catch (Exception ex){
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }
     }
 
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
+    }
 
 
 }

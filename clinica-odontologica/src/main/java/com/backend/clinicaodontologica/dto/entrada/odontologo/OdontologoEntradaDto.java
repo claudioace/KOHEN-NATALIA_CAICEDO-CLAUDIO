@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 public class OdontologoEntradaDto {
     @NotNull(message = "La matrícula del odontólogo no puede ser nulo")
     @Size(max = 12, message = "La matrícula debe tener hasta 12 digitos")
-    private int matricula;
+    private int numeroMatricula;
 
     @NotNull(message = "El nombre del odontólogo no puede ser nulo")
     @NotBlank(message = "Debe especificarse el nombre del odontólogo")
@@ -22,18 +22,18 @@ public class OdontologoEntradaDto {
     public OdontologoEntradaDto() {
     }
 
-    public OdontologoEntradaDto(int matricula, String nombre, String apellido) {
-        this.matricula = matricula;
+    public OdontologoEntradaDto(int numeroMatricula, String nombre, String apellido) {
+        this.numeroMatricula = numeroMatricula;
         this.nombre = nombre;
         this.apellido = apellido;
     }
 
-    public int getMatricula() {
-        return matricula;
+    public int getNumeroMatricula() {
+        return numeroMatricula;
     }
 
-    public void setMatricula(int matricula) {
-        this.matricula = matricula;
+    public void setNumeroMatricula(int numeroMatricula) {
+        this.numeroMatricula = numeroMatricula;
     }
 
     public String getNombre() {

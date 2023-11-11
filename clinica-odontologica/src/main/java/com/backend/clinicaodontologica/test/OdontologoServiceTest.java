@@ -2,14 +2,7 @@ package com.backend.clinicaodontologica.test;
 
 //import com.backend.clinicaodontologica.dao.impl.OdontologoDaoEnMemoria;
 
-import com.backend.clinicaodontologica.dao.impl.OdontologoDaoH2;
 import com.backend.clinicaodontologica.service.impl.OdontologoService;
-import org.junit.Test;
-
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-
 
 
 public class OdontologoServiceTest {
