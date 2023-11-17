@@ -3,7 +3,7 @@ package com.backend.clinicaodontologica.service.impl;
 import com.backend.clinicaodontologica.dao.IDao;
 import com.backend.clinicaodontologica.dto.entrada.odontologo.OdontologoEntradaDto;
 import com.backend.clinicaodontologica.dto.salida.odontologo.OdontologoSalidaDto;
-import com.backend.clinicaodontologica.model.Odontologo;
+import com.backend.clinicaodontologica.entity.Odontologo;
 import com.backend.clinicaodontologica.service.IOdontologoService;
 import com.backend.clinicaodontologica.utils.JsonPrinter;
 import org.modelmapper.ModelMapper;

@@ -1,9 +1,18 @@
-package com.backend.clinicaodontologica.model;
+package com.backend.clinicaodontologica.entity;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "ODONTOLOGOS")
 public class Odontologo {
-    private int id;
+    @Id
+    @GeneratedValue
+    private Long id;
+    @Column(length = 10)
     private int numeroMatricula;
+    @Column(length = 40)
     private String nombre;
+    @Column(length = 40)
     private String apellido;
 
     public Odontologo(int numeroMatricula, String nombre, String apellido) {
@@ -12,18 +21,11 @@ public class Odontologo {
         this.apellido = apellido;
     }
 
-    public Odontologo(int id, int numeroMatricula, String nombre, String apellido) {
-        this.id = id;
-        this.numeroMatricula = numeroMatricula;
-        this.nombre = nombre;
-        this.apellido = apellido;
-    }
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
