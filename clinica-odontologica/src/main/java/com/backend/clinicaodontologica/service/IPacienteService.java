@@ -15,4 +15,5 @@ public interface IPacienteService {
     PacienteSalidaDto buscarPacientePorId(Long id);
 
     PacienteSalidaDto actualizarPaciente(PacienteModificacionEntradaDto paciente);
+     void eliminarPaciente(Long id);
 }
