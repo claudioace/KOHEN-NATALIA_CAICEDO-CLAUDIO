@@ -67,6 +67,7 @@ public class PacienteService implements IPacienteService {
     @Override
     public PacienteSalidaDto actualizarPaciente(PacienteModificacionEntradaDto paciente) {
         //convertimos de paciente a entidad
+
         Paciente pacienteRecibido = modelMapper.map(paciente, Paciente.class);
         Paciente pacienteAActualizar = pacienteRepository.findById(pacienteRecibido.getId()).orElse(null);
 
