@@ -15,5 +15,5 @@ public interface IOdontologoService {
 
     OdontologoSalidaDto actualizarOdontologo(OdontologoModificacionEntradaDto odontologo);
     void eliminarOdontologo(Long id);
-   OdontologoSalidaDto buscarOdontologoPorMatricula(int matricula);
+
 }

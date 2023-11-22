@@ -95,10 +95,7 @@ public class OdontologoService implements IOdontologoService {
             //excepcion a lanzar aqui
         }
     }
-    @Override
-    public OdontologoSalidaDto buscarOdontologoPorMatricula(int matricula) {
-        return modelMapper.map(odontologoRepository.findByMatricula( matricula), OdontologoSalidaDto.class);
-    }
+
 
 
 }

@@ -101,10 +101,7 @@ public void eliminarPaciente(Long id) {
 }
 
 
-    @Override
-    public PacienteSalidaDto buscarPacientePorDni(int dni) {
-        return modelMapper.map(pacienteRepository.findByDni(dni), PacienteSalidaDto.class);
-    }
+
 
 
 

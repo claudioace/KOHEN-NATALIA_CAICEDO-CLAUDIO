@@ -1,9 +1,9 @@
 package com.backend.clinicaodontologica.dto.entrada.turno;
 
 
-import com.backend.clinicaodontologica.dto.entrada.odontologo.OdontologoEntradaDto;
 
-import com.backend.clinicaodontologica.dto.entrada.paciente.PacienteEntradaDto;
+import com.backend.clinicaodontologica.dto.salida.odontologo.OdontologoSalidaDto;
+import com.backend.clinicaodontologica.dto.salida.paciente.PacienteSalidaDto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.validation.Valid;
@@ -19,15 +19,15 @@ public class TurnoEntradaDto {
     private LocalDateTime fechaYHora;
     @NotNull(message = "El odontólogo no puede ser nulo")
     @Valid
-    private OdontologoEntradaDto odontologoEntradaDto;
-    @NotNull(message = "El pacienteEntradaDto no puede ser nulo")
+    private OdontologoSalidaDto odontologoSalidaDto;
+    @NotNull(message = "El pacienteSalidaDto no puede ser nulo")
     @Valid
-    private PacienteEntradaDto pacienteEntradaDto;
+    private PacienteSalidaDto pacienteSalidaDto;
 
-    public TurnoEntradaDto(LocalDateTime fechaYHora, OdontologoEntradaDto odontologoEntradaDto, PacienteEntradaDto pacienteEntradaDto) {
+    public TurnoEntradaDto(LocalDateTime fechaYHora, OdontologoSalidaDto odontologoSalidaDto, PacienteSalidaDto pacienteSalidaDto) {
         this.fechaYHora = fechaYHora;
-        this.odontologoEntradaDto = odontologoEntradaDto;
-        this.pacienteEntradaDto = pacienteEntradaDto;
+        this.odontologoSalidaDto = odontologoSalidaDto;
+        this.pacienteSalidaDto = pacienteSalidaDto;
     }
 
     public TurnoEntradaDto() {
@@ -41,19 +41,19 @@ public class TurnoEntradaDto {
         this.fechaYHora = fechaYHora;
     }
 
-    public OdontologoEntradaDto getOdontologoEntradaDto() {
-        return odontologoEntradaDto;
+    public OdontologoSalidaDto getOdontologoSalidaDto() {
+        return odontologoSalidaDto;
     }
 
-    public void setOdontologoEntradaDto(OdontologoEntradaDto odontologoEntradaDto) {
-        this.odontologoEntradaDto = odontologoEntradaDto;
+    public void setOdontologoSalidaDto(OdontologoSalidaDto odontologoSalidaDto) {
+        this.odontologoSalidaDto = odontologoSalidaDto;
     }
 
-    public PacienteEntradaDto getPacienteEntradaDto() {
-        return pacienteEntradaDto;
+    public PacienteSalidaDto getPacienteSalidaDto() {
+        return pacienteSalidaDto;
     }
 
-    public void setPacienteEntradaDto(PacienteEntradaDto pacienteEntradaDto) {
-        this.pacienteEntradaDto = pacienteEntradaDto;
+    public void setPacienteSalidaDto(PacienteSalidaDto pacienteSalidaDto) {
+        this.pacienteSalidaDto = pacienteSalidaDto;
     }
 }

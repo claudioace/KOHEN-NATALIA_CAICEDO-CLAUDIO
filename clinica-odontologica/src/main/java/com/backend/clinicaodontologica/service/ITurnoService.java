@@ -3,6 +3,7 @@ package com.backend.clinicaodontologica.service;
 import com.backend.clinicaodontologica.dto.entrada.turno.TurnoEntradaDto;
 import com.backend.clinicaodontologica.dto.modificacion.TurnoModificacionEntradaDto;
 import com.backend.clinicaodontologica.dto.salida.turno.TurnoSalidaDto;
+import com.backend.clinicaodontologica.exceptions.ResourceNotFoundException;
 
 
 import java.time.LocalDateTime;
@@ -16,7 +17,7 @@ public interface ITurnoService {
 
     TurnoSalidaDto buscarTurnoPorId(Long id);
 
-    TurnoSalidaDto actualizarTurno(TurnoModificacionEntradaDto paciente);
-    void eliminarTurno(Long id);
+    TurnoSalidaDto actualizarTurno(TurnoModificacionEntradaDto turno) throws ResourceNotFoundException;
+    void eliminarTurno(Long id)throws ResourceNotFoundException;
 
 }
