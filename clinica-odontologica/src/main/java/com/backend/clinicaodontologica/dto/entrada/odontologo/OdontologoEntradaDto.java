@@ -1,12 +1,10 @@
 package com.backend.clinicaodontologica.dto.entrada.odontologo;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 public class OdontologoEntradaDto {
     @NotNull(message = "La matrícula del odontólogo no puede ser nulo")
-    @Size(max = 12, message = "La matrícula debe tener hasta 12 digitos")
+    @Max(value = 10, message = "El número de matrícula debe ser menor o igual a 10")
     private int numeroMatricula;
 
     @NotNull(message = "El nombre del odontólogo no puede ser nulo")

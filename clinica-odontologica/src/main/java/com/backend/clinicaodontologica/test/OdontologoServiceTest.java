@@ -2,7 +2,9 @@ package com.backend.clinicaodontologica.test;
 
 //import com.backend.clinicaodontologica.dao.impl.OdontologoDaoEnMemoria;
 
+import com.backend.clinicaodontologica.repository.OdontologoRepository;
 import com.backend.clinicaodontologica.service.impl.OdontologoService;
+import org.junit.Test;
 
 
 public class OdontologoServiceTest {
@@ -25,22 +27,17 @@ public class OdontologoServiceTest {
         }
     }
 
-    @Test
-    public void deberiaRetornarListaNoVaciaOdontologoH2() {
-        odontologoService = new OdontologoService(new OdontologoDaoH2());
-        assertFalse(odontologoService.listarOdontologos().isEmpty());
-
-    }
 
 
-   @Test
-    public void deberiaRetornarListaNoVaciaEnMemoria() {
-        odontologoService = new OdontologoService(new OdontologoDaoEnMemoria(new ArrayList<>()));
-        Odontologo odontologoAPersistir = new Odontologo(333, "Juan", "Perez");
-        Odontologo odontologo = odontologoService.registrarOdontologo(odontologoAPersistir);
-        assertNotNull(odontologo.getId()); //Si fue registrado exitosamente, deberia tener un id
-    }
-    */
+
+
+
+@Test
+public void deberiaRetornarListaNoVaciaOdontologoH2() {
+    odontologoService = new OdontologoService(new odontologoRepository());
+    assertFalse(odontologoService.listarOdontologos().isEmpty());}
+ */
+
 
 
 }
