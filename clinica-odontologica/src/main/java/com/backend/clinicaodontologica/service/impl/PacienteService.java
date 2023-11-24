@@ -4,6 +4,7 @@ import com.backend.clinicaodontologica.dto.entrada.paciente.PacienteEntradaDto;
 import com.backend.clinicaodontologica.dto.modificacion.PacienteModificacionEntradaDto;
 import com.backend.clinicaodontologica.dto.salida.paciente.PacienteSalidaDto;
 import com.backend.clinicaodontologica.entity.Paciente;
+import com.backend.clinicaodontologica.exceptions.ResourceNotFoundException;
 import com.backend.clinicaodontologica.repository.PacienteRepository;
 import com.backend.clinicaodontologica.service.IPacienteService;
 import com.backend.clinicaodontologica.utils.JsonPrinter;
@@ -65,7 +66,7 @@ public class PacienteService implements IPacienteService {
 
 
     @Override
-    public PacienteSalidaDto actualizarPaciente(PacienteModificacionEntradaDto paciente) {
+    public PacienteSalidaDto actualizarPaciente(PacienteModificacionEntradaDto paciente) throws ResourceNotFoundException{
         //convertimos de paciente a entidad
 
         Paciente pacienteRecibido = modelMapper.map(paciente, Paciente.class);
@@ -82,20 +83,20 @@ public class PacienteService implements IPacienteService {
 
         } else {
             LOGGER.error("No fue posible actualizar el paciente porque no se encuentra en nuestra base de datos");
-            //lanzar excepcion correspondiente
+            throw new ResourceNotFoundException("No fue posible actualizar los datos ya que el paciente no se encuentra registrado");
         }
         return pacienteSalidaDto;
     }
 
 //estos metdos son nuevos: Elimniar paciente y buscar por DNI
 @Override
-public void eliminarPaciente(Long id) {
+public void eliminarPaciente(Long id) throws ResourceNotFoundException {
     if (pacienteRepository.findById(id).orElse(null) != null) {
         pacienteRepository.deleteById(id);
         LOGGER.warn("Se ha eliminado el paciente con id: {}", id);
     } else {
         LOGGER.error("No se ha encontrado el paciente con id {}", id);
-        //excepcion a lanzar aqui
+        throw new ResourceNotFoundException("No fue posible eliminar los datos ya que el paciente no se encuentra registrado");
     }
 
 }
