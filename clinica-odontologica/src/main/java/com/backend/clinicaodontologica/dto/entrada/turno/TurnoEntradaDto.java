@@ -11,7 +11,7 @@ public class TurnoEntradaDto {
     @FutureOrPresent(message = "La fecha no puede ser anterior al día de hoy")
     @NotNull(message = "Debe especificarse la fecha del turno")
     //@JsonProperty("fecha_ingreso")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime fechaYHora;
     @NotNull(message = "El odontólogo no puede ser nulo")
     @Valid
