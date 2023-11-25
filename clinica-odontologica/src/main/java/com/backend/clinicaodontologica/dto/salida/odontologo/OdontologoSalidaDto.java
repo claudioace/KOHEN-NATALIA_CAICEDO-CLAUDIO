@@ -2,11 +2,11 @@ package com.backend.clinicaodontologica.dto.salida.odontologo;
 
 public class OdontologoSalidaDto {
     private Long id;
-    private int numeroMatricula;
+    private Integer numeroMatricula;
     private String nombre;
     private String apellido;
 
-    public OdontologoSalidaDto(Long id, int numeroMatricula, String nombre, String apellido) {
+    public OdontologoSalidaDto(Long id, Integer numeroMatricula, String nombre, String apellido) {
         this.id = id;
         this.numeroMatricula = numeroMatricula;
         this.nombre = nombre;
@@ -24,11 +24,11 @@ public class OdontologoSalidaDto {
         this.id = id;
     }
 
-    public int getNumeroMatricula() {
+    public Integer getNumeroMatricula() {
         return numeroMatricula;
     }
 
-    public void setNumeroMatricula(int numeroMatricula) {
+    public void setNumeroMatricula(Integer numeroMatricula) {
         this.numeroMatricula = numeroMatricula;
     }
 

@@ -4,8 +4,8 @@ import javax.validation.constraints.*;
 
 public class OdontologoEntradaDto {
     @NotNull(message = "La matrícula del odontólogo no puede ser nulo")
-    @Max(value = 10, message = "El número de matrícula debe ser menor o igual a 10")
-    private int numeroMatricula;
+    @Digits(integer = 10, fraction = 0, message = "El número de matrícula debe tener 10 o menos caracteres")
+    private Integer numeroMatricula;
 
     @NotNull(message = "El nombre del odontólogo no puede ser nulo")
     @NotBlank(message = "Debe especificarse el nombre del odontólogo")
@@ -20,17 +20,17 @@ public class OdontologoEntradaDto {
     public OdontologoEntradaDto() {
     }
 
-    public OdontologoEntradaDto(int numeroMatricula, String nombre, String apellido) {
+    public OdontologoEntradaDto(Integer numeroMatricula, String nombre, String apellido) {
         this.numeroMatricula = numeroMatricula;
         this.nombre = nombre;
         this.apellido = apellido;
     }
 
-    public int getNumeroMatricula() {
+    public Integer getNumeroMatricula() {
         return numeroMatricula;
     }
 
-    public void setNumeroMatricula(int numeroMatricula) {
+    public void setNumeroMatricula(Integer numeroMatricula) {
         this.numeroMatricula = numeroMatricula;
     }
 

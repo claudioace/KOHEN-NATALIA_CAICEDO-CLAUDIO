@@ -9,13 +9,13 @@ public class Odontologo {
     @GeneratedValue
     private Long id;
     @Column(length = 10)
-    private int numeroMatricula;
+    private Integer numeroMatricula;
     @Column(length = 40)
     private String nombre;
     @Column(length = 40)
     private String apellido;
 
-    public Odontologo(int numeroMatricula, String nombre, String apellido) {
+    public Odontologo(Integer numeroMatricula, String nombre, String apellido) {
         this.numeroMatricula = numeroMatricula;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -32,11 +32,11 @@ public class Odontologo {
         this.id = id;
     }
 
-    public int getNumeroMatricula() {
+    public Integer getNumeroMatricula() {
         return numeroMatricula;
     }
 
-    public void setNumeroMatricula(int numeroMatricula) {
+    public void setNumeroMatricula(Integer numeroMatricula) {
         this.numeroMatricula = numeroMatricula;
     }
 

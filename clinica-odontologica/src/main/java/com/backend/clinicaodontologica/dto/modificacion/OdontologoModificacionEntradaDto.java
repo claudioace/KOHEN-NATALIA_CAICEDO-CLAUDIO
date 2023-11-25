@@ -2,6 +2,7 @@ package com.backend.clinicaodontologica.dto.modificacion;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -11,10 +12,9 @@ public class OdontologoModificacionEntradaDto {
     @NotNull(message = "Debe proveerse el id del odontologo que se desea modificar")
     private Long id;
 
-    @NotNull(message = "La matricula del odontólogo no puede ser nula")
-    @NotBlank(message = "Debe especificarse la matricula del odontólogo")
-    @Size(min = 10, message = "El campo debe tener mínimo 10 caracteres")
-    private String matricula;
+    @NotNull(message = "La Matrícula del odontólogo no puede ser nula")
+    @Digits(integer = 10, fraction = 0, message = "El campo debe tener máximo 10 caracteres")
+    private Integer numeroMatricula;
 
     @Size(max = 50, message = "El nombre del odontólogo debe tener hasta 50 caracteres")
     @NotNull(message = "El nombre de odontólogo no puede ser nulo")
@@ -30,9 +30,9 @@ public class OdontologoModificacionEntradaDto {
     public OdontologoModificacionEntradaDto() {
     }
 
-    public OdontologoModificacionEntradaDto(Long id, String matricula, String nombre, String apellido) {
+    public OdontologoModificacionEntradaDto(Long id, Integer numeroMatricula, String nombre, String apellido) {
         this.id = id;
-        this.matricula = matricula;
+        this.numeroMatricula = numeroMatricula;
         this.nombre = nombre;
         this.apellido = apellido;
     }
@@ -45,12 +45,12 @@ public class OdontologoModificacionEntradaDto {
         this.id = id;
     }
 
-    public String getMatricula() {
-        return matricula;
+    public Integer getNumeroMatricula() {
+        return numeroMatricula;
     }
 
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
+    public void setNumeroMatricula(Integer numeroMatricula) {
+        this.numeroMatricula = numeroMatricula;
     }
 
     public String getNombre() {

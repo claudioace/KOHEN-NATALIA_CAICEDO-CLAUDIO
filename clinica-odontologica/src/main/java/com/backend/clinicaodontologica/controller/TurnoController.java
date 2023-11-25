@@ -18,7 +18,8 @@ import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.OK;
-
+@RestController
+@RequestMapping("/turnos")
 public class TurnoController {
 
     private ITurnoService turnoService;
