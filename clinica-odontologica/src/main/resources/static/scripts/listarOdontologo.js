@@ -2,7 +2,7 @@ window.addEventListener("load", function () {
   /* ---------------------- obtenemos variables globales ---------------------- */
   const form = document.forms[0];
   const odontologos = this.document.getElementById("listar");
-   const urlOdontologos = "https://localhost:8080/listar/odontologos";
+   const urlOdontologos = "https://localhost:8080/odontologos/listar";
     
   // console.log(listar);
 

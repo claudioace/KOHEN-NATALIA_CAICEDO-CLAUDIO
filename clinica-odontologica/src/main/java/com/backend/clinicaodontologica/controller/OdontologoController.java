@@ -21,6 +21,7 @@ import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequestMapping("/odontologos")
+@CrossOrigin(origins = "*")
 public class OdontologoController {
 
     private IOdontologoService odontologoService;

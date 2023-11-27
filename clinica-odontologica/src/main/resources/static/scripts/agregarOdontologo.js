@@ -2,19 +2,18 @@ window.addEventListener("load", function () {
   const nombre = document.querySelector("#nombre");
   const apellido = document.querySelector("#apellido");
   const matricula = document.querySelector("#matricula");
-  const urlAgregar = "https://localhost:8080/odontologos/registrar";
+  const urlAgregar = "http://localhost:8081/odontologos/registrar"
   const formCrearOdontologo = document.forms[0];
 
   formCrearOdontologo.addEventListener("submit", function (event) {
     event.preventDefault();
     
     const payload = {
-      firstName: nombre.value,
-      lastName: apellido.value,
-      matricula: matricula.value,      
-      }
-      
-    console.log(payload);
+         nombre: nombre.value,
+          apellido: apellido.value,
+          numeroMatricula: matricula.value,
+          }
+
 
     const settings = {
       method: "POST",
@@ -30,6 +29,7 @@ window.addEventListener("load", function () {
       .then((odontologo) => {
         console.log(odontologo);
         //consultarodontologos();
+         window.location.href="../odontologosCreados.html"
 
       })
 

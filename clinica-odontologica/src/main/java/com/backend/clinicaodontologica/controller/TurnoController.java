@@ -20,6 +20,7 @@ import java.util.List;
 import static org.springframework.http.HttpStatus.OK;
 @RestController
 @RequestMapping("/turnos")
+@CrossOrigin(origins = "*")
 public class TurnoController {
 
     private ITurnoService turnoService;
