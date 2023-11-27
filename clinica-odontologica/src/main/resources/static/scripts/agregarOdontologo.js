@@ -7,13 +7,14 @@ window.addEventListener("load", function () {
 
   formCrearOdontologo.addEventListener("submit", function (event) {
     event.preventDefault();
-    
-    const payload = {
-         nombre: nombre.value,
-          apellido: apellido.value,
-          numeroMatricula: matricula.value,
-          }
 
+    const payload = {
+     nombre: nombre.value,
+      apellido: apellido.value,
+      numeroMatricula: matricula.value,
+      }
+
+    console.log(payload);
 
     const settings = {
       method: "POST",
@@ -28,8 +29,8 @@ window.addEventListener("load", function () {
       .then((response) => response.json())
       .then((odontologo) => {
         console.log(odontologo);
-        //consultarodontologos();
-         window.location.href="../odontologosCreados.html"
+     ;
+        window.location.href="../odontologosCreados.html"
 
       })
 
@@ -43,16 +44,17 @@ window.addEventListener("load", function () {
           console.warn("Requiere Autorización");
           alert("Requiere Autorización");
         } else if (err.status == 404) {
-          console.warn("Tarea inexistente");
-          alert("Tarea inexistente");
+          console.warn("Odontologo inexistente");
+          alert("Odontologo inexistente");
         } else {
           console.error("Error del servidor");
           alert("Error del servidor");
         }
       });
-      
-      
+
+
       });
   });
+
 
 
