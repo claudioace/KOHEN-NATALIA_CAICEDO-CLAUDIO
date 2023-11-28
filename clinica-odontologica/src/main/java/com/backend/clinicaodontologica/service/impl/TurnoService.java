@@ -35,14 +35,14 @@ public class TurnoService implements ITurnoService {
         configureMapping();
     }
 
-    /*    @Override
+       @Override
          public TurnoSalidaDto registrarTurno(TurnoEntradaDto turno ) {
          Turno turnoEntidad = modelMapper.map(turno, Turno.class);
          Turno turnoAPersistir= turnoRepository.save(turnoEntidad);
          TurnoSalidaDto turnoSalidaDto= modelMapper.map(turnoAPersistir,TurnoSalidaDto.class);
          return turnoSalidaDto ;
      }
- */
+ /*
     @Override
     public TurnoSalidaDto registrarTurno(TurnoEntradaDummy turnoDummy) {
         TurnoSalidaDto turno = null;
@@ -55,7 +55,7 @@ public class TurnoService implements ITurnoService {
         Turno turnoAPersistir= turnoRepository.save(turnoEntidad);
         TurnoSalidaDto turnoSalidaDto= modelMapper.map(turnoAPersistir,TurnoSalidaDto.class);
         return turnoSalidaDto ;
-    }
+    }*/
     @Override
     public List<TurnoSalidaDto> listarTurnos() {
 
