@@ -1,6 +1,7 @@
 package com.backend.clinicaodontologica.service.impl;
 
 import com.backend.clinicaodontologica.dto.entrada.turno.TurnoEntradaDto;
+import com.backend.clinicaodontologica.dto.entrada.turno.TurnoEntradaDummy;
 import com.backend.clinicaodontologica.dto.modificacion.TurnoModificacionEntradaDto;
 
 import com.backend.clinicaodontologica.dto.salida.paciente.PacienteSalidaDto;
@@ -34,14 +35,27 @@ public class TurnoService implements ITurnoService {
         configureMapping();
     }
 
+    /*    @Override
+         public TurnoSalidaDto registrarTurno(TurnoEntradaDto turno ) {
+         Turno turnoEntidad = modelMapper.map(turno, Turno.class);
+         Turno turnoAPersistir= turnoRepository.save(turnoEntidad);
+         TurnoSalidaDto turnoSalidaDto= modelMapper.map(turnoAPersistir,TurnoSalidaDto.class);
+         return turnoSalidaDto ;
+     }
+ */
     @Override
-    public TurnoSalidaDto registrarTurno(TurnoEntradaDto turno ) {
+    public TurnoSalidaDto registrarTurno(TurnoEntradaDummy turnoDummy) {
+        TurnoSalidaDto turno = null;
+        turno.setFechaYHora(turnoDummy.getFechaYHora());
+        turno.setPacienteSalidaDto(pacienteService.buscarPacientePorId(turnoDummy.getIdPacienteSalidaDto()));
+        turno.setOdontologoSalidaDto(odontologoService.buscarOdontologoPorId(turnoDummy.getIdOdontologoSalidaDto()));
+
+
         Turno turnoEntidad = modelMapper.map(turno, Turno.class);
         Turno turnoAPersistir= turnoRepository.save(turnoEntidad);
         TurnoSalidaDto turnoSalidaDto= modelMapper.map(turnoAPersistir,TurnoSalidaDto.class);
         return turnoSalidaDto ;
     }
-
     @Override
     public List<TurnoSalidaDto> listarTurnos() {
 

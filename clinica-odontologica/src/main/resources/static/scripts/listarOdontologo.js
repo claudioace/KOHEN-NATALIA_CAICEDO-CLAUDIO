@@ -1,4 +1,4 @@
-window.addEventListener("load", function () {
+
   window.addEventListener("load", function () {
     /* ---------------------- obtenemos variables globales ---------------------- */
 
@@ -67,5 +67,4 @@ window.addEventListener("load", function () {
 
 
     })
-
 

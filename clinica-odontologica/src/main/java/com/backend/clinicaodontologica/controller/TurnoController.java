@@ -1,6 +1,7 @@
 package com.backend.clinicaodontologica.controller;
 
 import com.backend.clinicaodontologica.dto.entrada.turno.TurnoEntradaDto;
+import com.backend.clinicaodontologica.dto.entrada.turno.TurnoEntradaDummy;
 import com.backend.clinicaodontologica.dto.modificacion.TurnoModificacionEntradaDto;
 import com.backend.clinicaodontologica.dto.salida.turno.TurnoSalidaDto;
 import com.backend.clinicaodontologica.exceptions.ResourceNotFoundException;
@@ -40,11 +41,15 @@ public class TurnoController {
             @ApiResponse(responseCode = "500", description = "Server error",
                     content = @Content)
     })
-    @PostMapping("/registrar")
+/*    @PostMapping("/registrar")
     public ResponseEntity<TurnoSalidaDto> registrarTurno(@RequestBody @Valid TurnoEntradaDto turno) {
         return new ResponseEntity<>(turnoService.registrarTurno(turno), HttpStatus.CREATED);
     }
-
+*/
+    @PostMapping("/registrar")
+    public ResponseEntity<TurnoSalidaDto> registrarTurno(@RequestBody @Valid TurnoEntradaDummy turno) {
+        return new ResponseEntity<>(turnoService.registrarTurno(turno), HttpStatus.CREATED);
+    }
     //GET
     @Operation(summary = "Búsqueda de un turno por ID")
     @ApiResponses(value = {
