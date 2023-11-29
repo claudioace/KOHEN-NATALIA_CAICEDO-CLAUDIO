@@ -3,14 +3,20 @@ import com.backend.clinicaodontologica.dto.entrada.odontologo.OdontologoEntradaD
 import com.backend.clinicaodontologica.dto.entrada.paciente.DomicilioEntradaDto;
 import com.backend.clinicaodontologica.dto.entrada.paciente.PacienteEntradaDto;
 import com.backend.clinicaodontologica.dto.entrada.turno.TurnoEntradaDto;
+import com.backend.clinicaodontologica.dto.modificacion.TurnoModificacionEntradaDto;
 import com.backend.clinicaodontologica.dto.salida.odontologo.OdontologoSalidaDto;
 import com.backend.clinicaodontologica.dto.salida.paciente.PacienteSalidaDto;
 import com.backend.clinicaodontologica.dto.salida.turno.TurnoSalidaDto;
+import com.backend.clinicaodontologica.exceptions.ResourceNotFoundException;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -20,42 +26,47 @@ import static org.junit.jupiter.api.Assertions.*;
  class TurnoServiceTest {
 
     @Autowired
-    private static TurnoService turnoService;
+    private TurnoService turnoService;
     @Autowired
-    private static OdontologoService odontologoService;
+    private OdontologoService odontologoService;
     @Autowired
-    private static PacienteService pacienteService;
+    private PacienteService pacienteService;
+    PacienteEntradaDto  paciente1;
+    PacienteSalidaDto pacienteSalida;
+    OdontologoEntradaDto odontologo1;
+    OdontologoSalidaDto odontologoSalida;
 
 
-/*
-    @BeforeAll
-    static void setup() {
+    @BeforeEach
+    void setUp() {
+        paciente1 = new PacienteEntradaDto("Claudio", "Caicedo", 123, LocalDate.of(2024, 01, 01),
+                new DomicilioEntradaDto("calle", 12345, "Santiago", "Santiago"));
+        pacienteSalida = pacienteService.registrarPaciente(paciente1);
 
-         paciente1 = pacienteService.registrarPaciente(new PacienteEntradaDto("Claudio", "Caicedo", 123, LocalDate.of(2024, 01, 01),
-                new DomicilioEntradaDto("calle", 12345, "Santiago", "Santiago")));
-
-        odontologo1 = odontologoService.registrarOdontologo(new OdontologoEntradaDto(2020, "Jhon", "Perezeition"));
-
-    }*/
-
-
-    @Test
-    public void crearTurno() throws Exception {
-
-        PacienteSalidaDto paciente1 = pacienteService.registrarPaciente(new PacienteEntradaDto("Claudio", "Caicedo", 123, LocalDate.of(2024, 01, 01),
-                new DomicilioEntradaDto("calle", 12345, "Santiago", "Santiago")));
-
-        OdontologoSalidaDto odontologo1 = odontologoService.registrarOdontologo(new OdontologoEntradaDto(2020, "Jhon", "Perezeition"));
-
-
+        odontologo1 = new OdontologoEntradaDto(2020, "Jhon", "Perezeition");
+        odontologoSalida = odontologoService.registrarOdontologo(odontologo1);
     }
-        // Crear el turno
-        @Test
-        public void deberiaRegistrarUnTurnoConOdontologoId1(){
-        TurnoSalidaDto turno = turnoService.registrarTurno(new TurnoEntradaDto(LocalDateTime.of(2024,1,1,11,1,1),odontologo1,paciente1));
+
+    @Test// resulta si no se hace el otro primero
+    void deberiaCrearUnTurnoConOdontologoId1(){
+        TurnoEntradaDto turnoEntrada =new TurnoEntradaDto(LocalDateTime.of(2024,1,1,11,1,1),odontologoSalida,pacienteSalida);
+        TurnoSalidaDto turno = turnoService.registrarTurno(turnoEntrada);
 
             assertEquals(1,turno.getOdontologoSalidaDto().getId());
-            }
-}
+            };
+    @Test
+    void deberiaEncontrarUnTurnoConId1()  {
+        TurnoSalidaDto turnoEncontrado = turnoService.buscarTurnoPorId(1L);
+        assertNotNull(turnoEncontrado, "El turno es nulo");
+        assertEquals(1, turnoEncontrado.getId(), "El ID del turno encontrado no coincide con el ID esperado");
+
+
+
+
+
+        }
 
 }
+
+
+
