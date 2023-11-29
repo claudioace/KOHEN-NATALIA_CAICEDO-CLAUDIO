@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface ITurnoService {
  TurnoSalidaDto registrarTurno(TurnoEntradaDto turnoEntradaDto);
-   // TurnoSalidaDto registrarTurno(TurnoEntradaDummy turnoEntradaDto);
+    //TurnoSalidaDto registrarTurno(TurnoEntradaDummy turnoEntradaDto);
     List<TurnoSalidaDto> listarTurnos();
 
     TurnoSalidaDto buscarTurnoPorId(Long id);

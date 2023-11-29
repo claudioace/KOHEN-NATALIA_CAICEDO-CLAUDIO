@@ -42,8 +42,8 @@ public class TurnoService implements ITurnoService {
          TurnoSalidaDto turnoSalidaDto= modelMapper.map(turnoAPersistir,TurnoSalidaDto.class);
          return turnoSalidaDto ;
      }
- /*
-    @Override
+
+   /* @Override
     public TurnoSalidaDto registrarTurno(TurnoEntradaDummy turnoDummy) {
         TurnoEntradaDto turno = null;
         turno.setFechaYHora(turnoDummy.getFechaYHora());
