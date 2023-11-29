@@ -45,7 +45,7 @@ public class TurnoService implements ITurnoService {
  */
     @Override
     public TurnoSalidaDto registrarTurno(TurnoEntradaDummy turnoDummy) {
-        TurnoSalidaDto turno = null;
+        TurnoEntradaDto turno = null;
         turno.setFechaYHora(turnoDummy.getFechaYHora());
         turno.setPacienteSalidaDto(pacienteService.buscarPacientePorId(turnoDummy.getIdPacienteSalidaDto()));
         turno.setOdontologoSalidaDto(odontologoService.buscarOdontologoPorId(turnoDummy.getIdOdontologoSalidaDto()));
