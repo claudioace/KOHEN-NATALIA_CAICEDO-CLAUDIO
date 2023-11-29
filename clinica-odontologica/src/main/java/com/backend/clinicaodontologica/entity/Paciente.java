@@ -6,7 +6,7 @@ import java.time.LocalDate;
 @Table(name = "PACIENTES")
 public class Paciente {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(length = 40)
     private String nombre;
