@@ -34,28 +34,29 @@ public class TurnoService implements ITurnoService {
         this.odontologoService = odontologoService;
         configureMapping();
     }
-
+/*
        @Override
          public TurnoSalidaDto registrarTurno(TurnoEntradaDto turno ) {
          Turno turnoEntidad = modelMapper.map(turno, Turno.class);
          Turno turnoAPersistir= turnoRepository.save(turnoEntidad);
          TurnoSalidaDto turnoSalidaDto= modelMapper.map(turnoAPersistir,TurnoSalidaDto.class);
          return turnoSalidaDto ;
-     }
-
-   /* @Override
+     };
+*/
+    @Override
     public TurnoSalidaDto registrarTurno(TurnoEntradaDummy turnoDummy) {
-        TurnoEntradaDto turno = null;
-        turno.setFechaYHora(turnoDummy.getFechaYHora());
-        turno.setPacienteSalidaDto(pacienteService.buscarPacientePorId(turnoDummy.getIdPacienteSalidaDto()));
-        turno.setOdontologoSalidaDto(odontologoService.buscarOdontologoPorId(turnoDummy.getIdOdontologoSalidaDto()));
-
+        TurnoEntradaDto turno = new TurnoEntradaDto(
+                turnoDummy.getFechaYHora(),
+                odontologoService.buscarOdontologoPorId(turnoDummy.getIdOdontologoSalidaDto()),
+                pacienteService.buscarPacientePorId(turnoDummy.getIdPacienteSalidaDto())
+        );
 
         Turno turnoEntidad = modelMapper.map(turno, Turno.class);
         Turno turnoAPersistir= turnoRepository.save(turnoEntidad);
         TurnoSalidaDto turnoSalidaDto= modelMapper.map(turnoAPersistir,TurnoSalidaDto.class);
-        return turnoSalidaDto ;
-    }*/
+        return turnoSalidaDto;
+    };
+
     @Override
     public List<TurnoSalidaDto> listarTurnos() {
 
@@ -120,10 +121,6 @@ public class TurnoService implements ITurnoService {
                 .addMappings(modelMapper -> modelMapper.map(TurnoEntradaDto::getPacienteSalidaDto, Turno::setPaciente));
         modelMapper.typeMap(Turno.class, TurnoSalidaDto.class)
                 .addMappings(modelMapper -> modelMapper.map(Turno::getPaciente, TurnoSalidaDto::setPacienteSalidaDto));
-
-
-        //odontólogo PREGUNTAR PROFE
-
 
         modelMapper.typeMap(TurnoEntradaDto.class, Turno.class)
                 .addMappings(modelMapper -> modelMapper.map(TurnoEntradaDto::getOdontologoSalidaDto, Turno::setOdontologo));

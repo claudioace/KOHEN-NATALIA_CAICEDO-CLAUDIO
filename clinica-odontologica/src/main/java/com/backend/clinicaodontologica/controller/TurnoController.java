@@ -41,15 +41,16 @@ public class TurnoController {
             @ApiResponse(responseCode = "500", description = "Server error",
                     content = @Content)
     })
+/*
    @PostMapping("/registrar")
     public ResponseEntity<TurnoSalidaDto> registrarTurno(@RequestBody @Valid TurnoEntradaDto turno) {
         return new ResponseEntity<>(turnoService.registrarTurno(turno), HttpStatus.CREATED);
     }
-
-    /*@PostMapping("/registrar")
+*/
+    @PostMapping("/registrar")
     public ResponseEntity<TurnoSalidaDto> registrarTurno(@RequestBody @Valid TurnoEntradaDummy turno) {
         return new ResponseEntity<>(turnoService.registrarTurno(turno), HttpStatus.CREATED);
-    }*/
+    }
     //GET
     @Operation(summary = "Búsqueda de un turno por ID")
     @ApiResponses(value = {
