@@ -13,10 +13,10 @@ import com.backend.clinicaodontologica.exceptions.ResourceNotFoundException;
 import org.junit.Ignore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -76,7 +76,6 @@ void setUp() {
 
 
     @Test// resulta si no se hace el otro primero
-
     void adeberiaCrearUnTurnoConOdontologoId1(){
         TurnoEntradaDummy turnoDummy =new TurnoEntradaDummy(LocalDateTime.of(2024,1,1,11,1,1),1L,1L);
         TurnoSalidaDto turno = turnoService.registrarTurno(turnoDummy);
@@ -85,14 +84,15 @@ void setUp() {
     };
 
     @Test
-    void bdeberiaEncontrarUnTurnoConId1()  {
+     void cdeberiaEncontrarUnTurnoConId1()  {
         TurnoSalidaDto turnoEncontrado = turnoService.buscarTurnoPorId(1L);
         assertNotNull(turnoEncontrado, "El turno es nulo");
         assertEquals(1, turnoEncontrado.getId(), "El ID del turno encontrado no coincide con el ID esperado");
         };
 
+
     @Test
-    void cdeberiaActualizarTurnoId1ConOdontologoId2(){
+    void bdeberiaActualizarTurnoId1ConOdontologoId2(){
         TurnoModificacionEntradaDummy turnoDummy = new TurnoModificacionEntradaDummy(
                 1L,
                 LocalDateTime.of(2024,1,1,11,1,1),
