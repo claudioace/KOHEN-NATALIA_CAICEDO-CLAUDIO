@@ -3,11 +3,8 @@ package com.backend.clinicaodontologica.service.impl;
 import com.backend.clinicaodontologica.dto.entrada.turno.TurnoEntradaDto;
 import com.backend.clinicaodontologica.dto.entrada.turno.TurnoEntradaDummy;
 import com.backend.clinicaodontologica.dto.modificacion.TurnoModificacionEntradaDto;
-
 import com.backend.clinicaodontologica.dto.modificacion.TurnoModificacionEntradaDummy;
-import com.backend.clinicaodontologica.dto.salida.paciente.PacienteSalidaDto;
 import com.backend.clinicaodontologica.dto.salida.turno.TurnoSalidaDto;
-import com.backend.clinicaodontologica.entity.Paciente;
 import com.backend.clinicaodontologica.entity.Turno;
 import com.backend.clinicaodontologica.exceptions.ResourceNotFoundException;
 import com.backend.clinicaodontologica.repository.TurnoRepository;
@@ -19,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class TurnoService implements ITurnoService {
     private final Logger LOGGER = LoggerFactory.getLogger(TurnoService.class);
@@ -35,15 +33,8 @@ public class TurnoService implements ITurnoService {
         this.odontologoService = odontologoService;
         configureMapping();
     }
-/*
-       @Override
-         public TurnoSalidaDto registrarTurno(TurnoEntradaDto turno ) {
-         Turno turnoEntidad = modelMapper.map(turno, Turno.class);
-         Turno turnoAPersistir= turnoRepository.save(turnoEntidad);
-         TurnoSalidaDto turnoSalidaDto= modelMapper.map(turnoAPersistir,TurnoSalidaDto.class);
-         return turnoSalidaDto ;
-     };
-*/
+
+
     @Override
     public TurnoSalidaDto registrarTurno(TurnoEntradaDummy turnoDummy) {
         TurnoEntradaDto turno = new TurnoEntradaDto(
@@ -53,11 +44,11 @@ public class TurnoService implements ITurnoService {
         );
         LOGGER.info("TurnoEntradaDto: " + JsonPrinter.toString(turno));
         Turno turnoEntidad = modelMapper.map(turno, Turno.class);
-        Turno turnoAPersistir= turnoRepository.save(turnoEntidad);
-        TurnoSalidaDto turnoSalidaDto= modelMapper.map(turnoAPersistir,TurnoSalidaDto.class);
+        Turno turnoAPersistir = turnoRepository.save(turnoEntidad);
+        TurnoSalidaDto turnoSalidaDto = modelMapper.map(turnoAPersistir, TurnoSalidaDto.class);
         LOGGER.info("TurnoSalidaDto: " + JsonPrinter.toString(turnoSalidaDto));
         return turnoSalidaDto;
-    };
+    }
 
     @Override
     public List<TurnoSalidaDto> listarTurnos() {
@@ -75,6 +66,7 @@ public class TurnoService implements ITurnoService {
     public TurnoSalidaDto buscarTurnoPorId(Long id) {
 
         Turno turnoBuscado = turnoRepository.findById(id).orElse(null);
+        LOGGER.info("Turno encontrado: {}", JsonPrinter.toString(turnoBuscado));
         TurnoSalidaDto turnoEncontrado = null;
 
         if (turnoBuscado != null) {
@@ -94,7 +86,7 @@ public class TurnoService implements ITurnoService {
         );
 
         Turno turnoRecibido = modelMapper.map(turno, Turno.class);
-        Turno turnoAActualizar =turnoRepository.findById(turnoRecibido.getId()).orElse(null);
+        Turno turnoAActualizar = turnoRepository.findById(turnoRecibido.getId()).orElse(null);
 
         TurnoSalidaDto turnoSalidaDto = null;
 
@@ -123,6 +115,7 @@ public class TurnoService implements ITurnoService {
             throw new ResourceNotFoundException("No se ha encontrado el turno con id " + id);
         }
     }
+
     private void configureMapping() {
         modelMapper.typeMap(TurnoEntradaDto.class, Turno.class)
                 .addMappings(modelMapper -> modelMapper.map(TurnoEntradaDto::getPacienteSalidaDto, Turno::setPaciente));

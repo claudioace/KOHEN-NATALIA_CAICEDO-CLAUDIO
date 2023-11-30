@@ -24,7 +24,7 @@ import static org.springframework.http.HttpStatus.OK;
 @RequestMapping("/pacientes")
 @CrossOrigin(origins = "*")
 public class PacienteController {
-    private IPacienteService pacienteService;
+    private final IPacienteService pacienteService;
 
     public PacienteController(IPacienteService pacienteService) {
         this.pacienteService = pacienteService;
@@ -97,6 +97,7 @@ public class PacienteController {
     public ResponseEntity<PacienteSalidaDto> actualizarPaciente(@RequestBody PacienteModificacionEntradaDto paciente) throws ResourceNotFoundException {
         return new ResponseEntity<>(pacienteService.actualizarPaciente(paciente), HttpStatus.OK);
     }
+
     @Operation(summary = "Eliminación de un paciente por Id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Paciente eliminado correctamente",
@@ -110,7 +111,7 @@ public class PacienteController {
                     content = @Content)
     })
     @DeleteMapping("eliminar/{id}")
-    public ResponseEntity<?> eliminarPaciente(@PathVariable Long id) throws ResourceNotFoundException{
+    public ResponseEntity<?> eliminarPaciente(@PathVariable Long id) throws ResourceNotFoundException {
         pacienteService.eliminarPaciente(id);
         return new ResponseEntity<>("Paciente eliminado correctamente", HttpStatus.NO_CONTENT);
     }

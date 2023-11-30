@@ -1,7 +1,5 @@
 package com.backend.clinicaodontologica.dto.modificacion;
 
-import com.backend.clinicaodontologica.dto.salida.odontologo.OdontologoSalidaDto;
-import com.backend.clinicaodontologica.dto.salida.paciente.PacienteSalidaDto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.validation.Valid;
@@ -25,6 +23,13 @@ public class TurnoModificacionEntradaDummy {
     private Long idPacienteSalidaDto;
 
     public TurnoModificacionEntradaDummy() {
+    }
+
+    public TurnoModificacionEntradaDummy(Long id, LocalDateTime fechaYHora, Long idOdontologoSalidaDto, Long idPacienteSalidaDto) {
+        this.id = id;
+        this.fechaYHora = fechaYHora;
+        this.idOdontologoSalidaDto = idOdontologoSalidaDto;
+        this.idPacienteSalidaDto = idPacienteSalidaDto;
     }
 
     public Long getId() {
@@ -56,13 +61,6 @@ public class TurnoModificacionEntradaDummy {
     }
 
     public void setIdPacienteSalidaDto(Long idPacienteSalidaDto) {
-        this.idPacienteSalidaDto = idPacienteSalidaDto;
-    }
-
-    public TurnoModificacionEntradaDummy(Long id, LocalDateTime fechaYHora, Long idOdontologoSalidaDto, Long idPacienteSalidaDto) {
-        this.id = id;
-        this.fechaYHora = fechaYHora;
-        this.idOdontologoSalidaDto = idOdontologoSalidaDto;
         this.idPacienteSalidaDto = idPacienteSalidaDto;
     }
 }

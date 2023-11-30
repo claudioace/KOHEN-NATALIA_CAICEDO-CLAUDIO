@@ -1,7 +1,5 @@
 package com.backend.clinicaodontologica.dto.entrada.turno;
 
-import com.backend.clinicaodontologica.dto.salida.odontologo.OdontologoSalidaDto;
-import com.backend.clinicaodontologica.dto.salida.paciente.PacienteSalidaDto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.validation.Valid;
@@ -21,6 +19,15 @@ public class TurnoEntradaDummy {
     @NotNull(message = "El paciente no puede ser nulo")
     @Valid
     private Long idPacienteSalidaDto;
+
+    public TurnoEntradaDummy(LocalDateTime fechaYHora, Long idOdontologoSalidaDto, Long idPacienteSalidaDto) {
+        this.fechaYHora = fechaYHora;
+        this.idOdontologoSalidaDto = idOdontologoSalidaDto;
+        this.idPacienteSalidaDto = idPacienteSalidaDto;
+    }
+
+    public TurnoEntradaDummy() {
+    }
 
     public LocalDateTime getFechaYHora() {
         return fechaYHora;
@@ -44,14 +51,5 @@ public class TurnoEntradaDummy {
 
     public void setIdPacienteSalidaDto(Long idPacienteSalidaDto) {
         this.idPacienteSalidaDto = idPacienteSalidaDto;
-    }
-
-    public TurnoEntradaDummy(LocalDateTime fechaYHora, Long idOdontologoSalidaDto, Long idPacienteSalidaDto) {
-        this.fechaYHora = fechaYHora;
-        this.idOdontologoSalidaDto = idOdontologoSalidaDto;
-        this.idPacienteSalidaDto = idPacienteSalidaDto;
-    }
-
-    public TurnoEntradaDummy() {
     }
 }

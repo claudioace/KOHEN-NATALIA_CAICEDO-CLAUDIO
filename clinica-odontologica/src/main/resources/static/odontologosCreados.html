@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Clínica Odontológica</title>
-  <meta
-          name="description"
-          content="Proyecto integrador | backend"
-  />
+    <meta charset="UTF-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Clínica Odontológica</title>
+    <meta
+            content="Proyecto integrador | backend"
+            name="description"
+    />
 
-  <link rel="stylesheet" href="./css/AgregarOdontologo.css" />
+    <link href="./css/AgregarOdontologo.css" rel="stylesheet"/>
 
-  <script src="./scripts/listarOdontologo.js"></script>
+    <script src="./scripts/listarOdontologo.js"></script>
 
 </head>
 <body>
 <header class="container">
-  <nav>
-    <img src="./img/logo.png" alt="logo Clínica" />
-    <h1>Clínica Odontológica</h1>
-  </nav>
+    <nav>
+        <img alt="logo Clínica" src="./img/logo.png"/>
+        <h1>Clínica Odontológica</h1>
+    </nav>
 </header>
 
 <div class="container">
 
-  <form id="listar" action="listarOdontologos" method="GET">
-    <div class="form-header">
-      <h2>Clínica Odontológica</h2>
+    <form action="listarOdontologos" id="listar" method="GET">
+        <div class="form-header">
+            <h2>Clínica Odontológica</h2>
 
-      <button
-              type="submit"
-              class="fa-solid fa-right-from-bracket"
-              id="listarOdontologo">Ver Odontologos</button>
+            <button
+                    class="fa-solid fa-right-from-bracket"
+                    id="listarOdontologo"
+                    type="submit">Ver Odontologos
+            </button>
 
-    </div>
+        </div>
 
-    <div class="odontologos">
+        <div class="odontologos">
 
-    </div>
+        </div>
 
 
-</form>
+    </form>
 </div>
 </body>
 </html>

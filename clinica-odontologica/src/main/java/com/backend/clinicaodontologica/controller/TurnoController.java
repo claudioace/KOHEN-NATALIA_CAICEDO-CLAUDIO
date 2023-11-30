@@ -1,8 +1,6 @@
 package com.backend.clinicaodontologica.controller;
 
-import com.backend.clinicaodontologica.dto.entrada.turno.TurnoEntradaDto;
 import com.backend.clinicaodontologica.dto.entrada.turno.TurnoEntradaDummy;
-import com.backend.clinicaodontologica.dto.modificacion.TurnoModificacionEntradaDto;
 import com.backend.clinicaodontologica.dto.modificacion.TurnoModificacionEntradaDummy;
 import com.backend.clinicaodontologica.dto.salida.turno.TurnoSalidaDto;
 import com.backend.clinicaodontologica.exceptions.ResourceNotFoundException;
@@ -20,12 +18,13 @@ import javax.validation.Valid;
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.OK;
+
 @RestController
 @RequestMapping("/turnos")
 @CrossOrigin(origins = "*")
 public class TurnoController {
 
-    private ITurnoService turnoService;
+    private final ITurnoService turnoService;
 
     public TurnoController(ITurnoService turnoService) {
         this.turnoService = turnoService;
@@ -42,16 +41,12 @@ public class TurnoController {
             @ApiResponse(responseCode = "500", description = "Server error",
                     content = @Content)
     })
-/*
-   @PostMapping("/registrar")
-    public ResponseEntity<TurnoSalidaDto> registrarTurno(@RequestBody @Valid TurnoEntradaDto turno) {
-        return new ResponseEntity<>(turnoService.registrarTurno(turno), HttpStatus.CREATED);
-    }
-*/
+
     @PostMapping("/registrar")
     public ResponseEntity<TurnoSalidaDto> registrarTurno(@RequestBody @Valid TurnoEntradaDummy turno) {
         return new ResponseEntity<>(turnoService.registrarTurno(turno), HttpStatus.CREATED);
     }
+
     //GET
     @Operation(summary = "Búsqueda de un turno por ID")
     @ApiResponses(value = {
@@ -83,8 +78,6 @@ public class TurnoController {
     })
     @GetMapping("/listar")
     public ResponseEntity<List<TurnoSalidaDto>> listarTurnos() {
-       //List<TurnoSalidaDto> turnos = turnoService.listarTurnos();
-       //return new ResponseEntity<>(turnos.listarTurnos(), OK);
         return new ResponseEntity<>(turnoService.listarTurnos(), OK);
     }
 
@@ -105,6 +98,7 @@ public class TurnoController {
     public ResponseEntity<TurnoSalidaDto> actualizarTurno(@RequestBody TurnoModificacionEntradaDummy turno) throws ResourceNotFoundException {
         return new ResponseEntity<>(turnoService.actualizarTurno(turno), HttpStatus.OK);
     }
+
     @Operation(summary = "Eliminación de un turno por Id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Turno eliminado correctamente",
@@ -118,7 +112,7 @@ public class TurnoController {
                     content = @Content)
     })
     @DeleteMapping("/eliminar/{id}")
-    public ResponseEntity<?> eliminarTurno(@PathVariable Long id) throws ResourceNotFoundException{
+    public ResponseEntity<?> eliminarTurno(@PathVariable Long id) throws ResourceNotFoundException {
         turnoService.eliminarTurno(id);
         return new ResponseEntity<>("Turno eliminado correctamente", HttpStatus.NO_CONTENT);
     }

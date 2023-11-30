@@ -1,12 +1,9 @@
 package com.backend.clinicaodontologica.service.impl;
 
-import com.backend.clinicaodontologica.dto.entrada.odontologo.OdontologoEntradaDto;
 import com.backend.clinicaodontologica.dto.entrada.paciente.DomicilioEntradaDto;
 import com.backend.clinicaodontologica.dto.entrada.paciente.PacienteEntradaDto;
-import com.backend.clinicaodontologica.dto.salida.odontologo.OdontologoSalidaDto;
 import com.backend.clinicaodontologica.dto.salida.paciente.PacienteSalidaDto;
 import com.backend.clinicaodontologica.exceptions.ResourceNotFoundException;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
@@ -23,32 +20,33 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class PacienteServiceTest {
+    PacienteEntradaDto paciente1;
+    PacienteSalidaDto pacienteSalida;
     @Autowired
     private PacienteService pacienteService;
-    PacienteEntradaDto  paciente1;
-    PacienteSalidaDto pacienteSalida;
-
 
     @Test
-     @Order(1)
-    void deberiaRegistrarPacienteJuanYRetornarId(){
-        PacienteEntradaDto pacienteEntradaDto = new PacienteEntradaDto("Juan", "Perez",555999, LocalDate.of(2023,01,01),
-                new DomicilioEntradaDto("calle",12345,"Santiago","Santiago"));
+    @Order(1)
+    void deberiaCrearPacienteJuanYRetornarId() {
+        PacienteEntradaDto pacienteEntradaDto = new PacienteEntradaDto("Juan", "Perez", 555999, LocalDate.of(2023, 01, 01),
+                new DomicilioEntradaDto("calle", 12345, "Santiago", "Santiago"));
 
         PacienteSalidaDto pacienteSalidaDto =
-        pacienteService.registrarPaciente(pacienteEntradaDto);
+                pacienteService.registrarPaciente(pacienteEntradaDto);
 
         assertNotNull(pacienteSalidaDto.getId());
-        assertEquals("Juan",pacienteSalidaDto.getNombre());
+        assertEquals("Juan", pacienteSalidaDto.getNombre());
     }
+
     @Test
     @Order(2)
-    void deberiaEliminarElPacienteConId1oLanzarResourceNotFound(){
-        try{
+    void deberiaEliminarElPacienteConId1oLanzarResourceNotFound() {
+        try {
             pacienteService.eliminarPaciente(1L);
-        } catch (Exception exception){
+        } catch (Exception exception) {
             exception.printStackTrace();
-        };
+        }
+        ;
         assertThrows(ResourceNotFoundException.class, () -> pacienteService.eliminarPaciente(1L));
     }
 
@@ -63,8 +61,8 @@ class PacienteServiceTest {
 
     @Test
     @Order(3)
-    void zdeberiaRetornarunaListaNoVacia(){
-        List<PacienteSalidaDto> pacienteSalidaDtoList= pacienteService.listarPacientes();
+    void deberiaRetornarunaListaNoVacia() {
+        List<PacienteSalidaDto> pacienteSalidaDtoList = pacienteService.listarPacientes();
         assertFalse(pacienteSalidaDtoList.isEmpty());
     }
 

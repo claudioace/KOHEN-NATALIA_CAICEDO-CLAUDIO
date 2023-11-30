@@ -19,10 +19,11 @@ import java.util.List;
 @Service
 public class PacienteService implements IPacienteService {
     private final Logger LOGGER = LoggerFactory.getLogger(PacienteService.class);
-    private PacienteRepository pacienteRepository;
-    private ModelMapper modelMapper;
+    private final PacienteRepository pacienteRepository;
+    private final ModelMapper modelMapper;
 
-    @Autowired //en versiones anteriores, era necesario este comando para identificar los beans. en versiones recientes no es necesario.
+    @Autowired
+
     public PacienteService(PacienteRepository pacienteRepository, ModelMapper modelMapper) {
         this.pacienteRepository = pacienteRepository;
         this.modelMapper = modelMapper;
@@ -32,13 +33,10 @@ public class PacienteService implements IPacienteService {
     @Override
     public PacienteSalidaDto registrarPaciente(PacienteEntradaDto paciente) {
 
-        //mediante el mapper de dto a entidad
+
         LOGGER.info("PacienteEntradaDto: " + JsonPrinter.toString(paciente));
         Paciente pacienteEntidad = modelMapper.map(paciente, Paciente.class);
-
-        //ya no existe dao. esto se hace con los metodos del PacienteRepository
         Paciente pacienteAPersistir = pacienteRepository.save(pacienteEntidad);
-        //transformamos la entidad obtenida en salidaDto
         PacienteSalidaDto pacienteSalidaDto = modelMapper.map(pacienteAPersistir, PacienteSalidaDto.class);
         LOGGER.info("PacienteSalidaDto: " + JsonPrinter.toString(pacienteSalidaDto));
         return pacienteSalidaDto;
@@ -66,8 +64,8 @@ public class PacienteService implements IPacienteService {
 
 
     @Override
-    public PacienteSalidaDto actualizarPaciente(PacienteModificacionEntradaDto paciente) throws ResourceNotFoundException{
-        //convertimos de paciente a entidad
+    public PacienteSalidaDto actualizarPaciente(PacienteModificacionEntradaDto paciente) throws ResourceNotFoundException {
+
 
         Paciente pacienteRecibido = modelMapper.map(paciente, Paciente.class);
         Paciente pacienteAActualizar = pacienteRepository.findById(pacienteRecibido.getId()).orElse(null);
@@ -88,22 +86,18 @@ public class PacienteService implements IPacienteService {
         return pacienteSalidaDto;
     }
 
-//estos metdos son nuevos: Elimniar paciente y buscar por DNI
-@Override
-public void eliminarPaciente(Long id) throws ResourceNotFoundException {
-    if (pacienteRepository.findById(id).orElse(null) != null) {
-        pacienteRepository.deleteById(id);
-        LOGGER.warn("Se ha eliminado el paciente con id: {}", id);
-    } else {
-        LOGGER.error("No se ha encontrado el paciente con id {}", id);
-        throw new ResourceNotFoundException("No fue posible eliminar los datos ya que el paciente no se encuentra registrado");
+
+    @Override
+    public void eliminarPaciente(Long id) throws ResourceNotFoundException {
+        if (pacienteRepository.findById(id).orElse(null) != null) {
+            pacienteRepository.deleteById(id);
+            LOGGER.warn("Se ha eliminado el paciente con id: {}", id);
+        } else {
+            LOGGER.error("No se ha encontrado el paciente con id {}", id);
+            throw new ResourceNotFoundException("No fue posible eliminar los datos ya que el paciente no se encuentra registrado");
+        }
+
     }
-
-}
-
-
-
-
 
 
     private void configureMapping() {

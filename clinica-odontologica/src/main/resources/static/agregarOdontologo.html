@@ -1,79 +1,78 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Clínica Odontológica</title>
-  <meta
-          name="description"
-          content="Proyecto integrador | backend"
-  />
+    <meta charset="UTF-8"/>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Clínica Odontológica</title>
+    <meta
+            content="Proyecto integrador | backend"
+            name="description"
+    />
 
-  <link rel="stylesheet" href="./css/AgregarOdontologo.css" />
+    <link href="./css/AgregarOdontologo.css" rel="stylesheet"/>
 
 
-  <script src="./scripts/agregarOdontologo.js"></script>
+    <script src="./scripts/agregarOdontologo.js"></script>
 
 </head>
 <body>
 <header class="container">
-  <nav>
-    <img src="./img/logo.png" alt="logo Clínica" />
-    <h1>Clínica Odontológica</h1>
-  </nav>
+    <nav>
+        <img alt="logo Clínica" src="./img/logo.png"/>
+        <h1>Clínica Odontológica</h1>
+    </nav>
 </header>
 
 <div class="container">
-  <form action="/guardarOdontologo" method="post" id="AgregarOdontologo">
-    <div class="form-header">
-      <h2>Clínica Odontológica</h2>
-      <h3>Agregar Odontologo</h3>
-    </div>
+    <form action="/guardarOdontologo" id="AgregarOdontologo" method="post">
+        <div class="form-header">
+            <h2>Clínica Odontológica</h2>
+            <h3>Agregar Odontologo</h3>
+        </div>
 
-    <div>
-      <label for="nombre" name="Nombre">Nombre:</label>
-      <input
-              type="text"
-              id="nombre"
-              placeholder="Ingrese el nombre del odontologo"
-              name="nombre"
-              required
-      />
-    </div>
-    <div>
-      <label for="apellido" name="Apellido">Apellido:</label>
-      <input
-              type="text"
-              id="apellido"
-              placeholder="Ingrese el apellido del odontologo"
-              name="apellido"
-              required
-      />
-    </div>
-    <div>
-      <label for="matricula" name="matricula">Matricula: </label>
-      <input
-              type="number"
-              id="matricula"
-              placeholder="Ingrese la matricula del Odontologo"
-              name="matricula"
-              required
-      />
-    </div>
-    <div>
-      <button
-              type="submit"
-              class="fa-solid fa-right-from-bracket"
-              id="botonAgregarNuevoOdontologo"
-      >Guardar Odontologo
-      </button>
+        <div>
+            <label for="nombre" name="Nombre">Nombre:</label>
+            <input
+                    id="nombre"
+                    name="nombre"
+                    placeholder="Ingrese el nombre del odontologo"
+                    required
+                    type="text"
+            />
+        </div>
+        <div>
+            <label for="apellido" name="Apellido">Apellido:</label>
+            <input
+                    id="apellido"
+                    name="apellido"
+                    placeholder="Ingrese el apellido del odontologo"
+                    required
+                    type="text"
+            />
+        </div>
+        <div>
+            <label for="matricula" name="matricula">Matricula: </label>
+            <input
+                    id="matricula"
+                    name="matricula"
+                    placeholder="Ingrese la matricula del Odontologo"
+                    required
+                    type="number"
+            />
+        </div>
+        <div>
+            <button
+                    class="fa-solid fa-right-from-bracket"
+                    id="botonAgregarNuevoOdontologo"
+                    type="submit"
+            >Guardar Odontologo
+            </button>
 
-    </div>
+        </div>
 
 
-
-  </form>
+    </form>
 
 </div>
 </body>

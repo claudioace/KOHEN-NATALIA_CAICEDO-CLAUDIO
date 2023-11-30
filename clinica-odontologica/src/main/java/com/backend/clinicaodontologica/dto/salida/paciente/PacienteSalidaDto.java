@@ -9,7 +9,7 @@ public class PacienteSalidaDto {
     private String apellido;
     private int dni;
     private LocalDate fechaIngreso;
-    private DomicilioSalidaDto domicilioSalidaDto; // aca usará el elemento del domicilioDTO
+    private DomicilioSalidaDto domicilioSalidaDto;
 
     public PacienteSalidaDto() {
     }
