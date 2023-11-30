@@ -102,7 +102,6 @@ public class TurnoService implements ITurnoService {
             throw new ResourceNotFoundException("No se ha encontrado el turno");
         }
 
-
         return turnoSalidaDto;
     }
 
