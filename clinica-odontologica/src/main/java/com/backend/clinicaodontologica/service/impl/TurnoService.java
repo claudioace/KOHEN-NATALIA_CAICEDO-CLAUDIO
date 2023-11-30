@@ -4,6 +4,7 @@ import com.backend.clinicaodontologica.dto.entrada.turno.TurnoEntradaDto;
 import com.backend.clinicaodontologica.dto.entrada.turno.TurnoEntradaDummy;
 import com.backend.clinicaodontologica.dto.modificacion.TurnoModificacionEntradaDto;
 
+import com.backend.clinicaodontologica.dto.modificacion.TurnoModificacionEntradaDummy;
 import com.backend.clinicaodontologica.dto.salida.paciente.PacienteSalidaDto;
 import com.backend.clinicaodontologica.dto.salida.turno.TurnoSalidaDto;
 import com.backend.clinicaodontologica.entity.Paciente;
@@ -50,10 +51,11 @@ public class TurnoService implements ITurnoService {
                 odontologoService.buscarOdontologoPorId(turnoDummy.getIdOdontologoSalidaDto()),
                 pacienteService.buscarPacientePorId(turnoDummy.getIdPacienteSalidaDto())
         );
-
+        LOGGER.info("TurnoEntradaDto: " + JsonPrinter.toString(turno));
         Turno turnoEntidad = modelMapper.map(turno, Turno.class);
         Turno turnoAPersistir= turnoRepository.save(turnoEntidad);
         TurnoSalidaDto turnoSalidaDto= modelMapper.map(turnoAPersistir,TurnoSalidaDto.class);
+        LOGGER.info("TurnoSalidaDto: " + JsonPrinter.toString(turnoSalidaDto));
         return turnoSalidaDto;
     };
 
@@ -83,7 +85,13 @@ public class TurnoService implements ITurnoService {
     }
 
     @Override
-    public TurnoSalidaDto actualizarTurno(TurnoModificacionEntradaDto turno) throws ResourceNotFoundException {
+    public TurnoSalidaDto actualizarTurno(TurnoModificacionEntradaDummy turnoDummy) throws ResourceNotFoundException {
+        TurnoModificacionEntradaDto turno = new TurnoModificacionEntradaDto(
+                turnoDummy.getId(),
+                turnoDummy.getFechaYHora(),
+                odontologoService.buscarOdontologoPorId(turnoDummy.getIdOdontologoSalidaDto()),
+                pacienteService.buscarPacientePorId(turnoDummy.getIdPacienteSalidaDto())
+        );
 
         Turno turnoRecibido = modelMapper.map(turno, Turno.class);
         Turno turnoAActualizar =turnoRepository.findById(turnoRecibido.getId()).orElse(null);

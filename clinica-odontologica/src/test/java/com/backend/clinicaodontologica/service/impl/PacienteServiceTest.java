@@ -1,10 +1,13 @@
 package com.backend.clinicaodontologica.service.impl;
 
+import com.backend.clinicaodontologica.dto.entrada.odontologo.OdontologoEntradaDto;
 import com.backend.clinicaodontologica.dto.entrada.paciente.DomicilioEntradaDto;
 import com.backend.clinicaodontologica.dto.entrada.paciente.PacienteEntradaDto;
+import com.backend.clinicaodontologica.dto.salida.odontologo.OdontologoSalidaDto;
 import com.backend.clinicaodontologica.dto.salida.paciente.PacienteSalidaDto;
 import com.backend.clinicaodontologica.exceptions.ResourceNotFoundException;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -22,6 +25,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class PacienteServiceTest {
     @Autowired
     private PacienteService pacienteService;
+    PacienteEntradaDto  paciente1;
+    PacienteSalidaDto pacienteSalida;
+
 
     @Test
      @Order(1)
@@ -45,11 +51,21 @@ class PacienteServiceTest {
         };
         assertThrows(ResourceNotFoundException.class, () -> pacienteService.eliminarPaciente(1L));
     }
+
+    @BeforeEach
+    void setUp() {
+        //crea un unico paciente
+        paciente1 = new PacienteEntradaDto("Claudio", "Caicedo", 123, LocalDate.of(2024, 01, 01),
+                new DomicilioEntradaDto("calle", 12345, "Santiago", "Santiago"));
+        pacienteSalida = pacienteService.registrarPaciente(paciente1);
+
+    }
+
     @Test
     @Order(3)
-    void zdeberiaRetornarunaListaVacia(){
+    void zdeberiaRetornarunaListaNoVacia(){
         List<PacienteSalidaDto> pacienteSalidaDtoList= pacienteService.listarPacientes();
-        assertTrue(pacienteSalidaDtoList.isEmpty());
+        assertFalse(pacienteSalidaDtoList.isEmpty());
     }
 
 }

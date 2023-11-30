@@ -3,6 +3,7 @@ package com.backend.clinicaodontologica.controller;
 import com.backend.clinicaodontologica.dto.entrada.turno.TurnoEntradaDto;
 import com.backend.clinicaodontologica.dto.entrada.turno.TurnoEntradaDummy;
 import com.backend.clinicaodontologica.dto.modificacion.TurnoModificacionEntradaDto;
+import com.backend.clinicaodontologica.dto.modificacion.TurnoModificacionEntradaDummy;
 import com.backend.clinicaodontologica.dto.salida.turno.TurnoSalidaDto;
 import com.backend.clinicaodontologica.exceptions.ResourceNotFoundException;
 import com.backend.clinicaodontologica.service.ITurnoService;
@@ -101,7 +102,7 @@ public class TurnoController {
                     content = @Content)
     })
     @PutMapping("/actualizar")
-    public ResponseEntity<TurnoSalidaDto> actualizarTurno(@RequestBody TurnoModificacionEntradaDto turno) throws ResourceNotFoundException {
+    public ResponseEntity<TurnoSalidaDto> actualizarTurno(@RequestBody TurnoModificacionEntradaDummy turno) throws ResourceNotFoundException {
         return new ResponseEntity<>(turnoService.actualizarTurno(turno), HttpStatus.OK);
     }
     @Operation(summary = "Eliminación de un turno por Id")
