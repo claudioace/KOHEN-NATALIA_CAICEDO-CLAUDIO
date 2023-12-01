@@ -10,11 +10,11 @@ import com.backend.clinicaodontologica.dto.salida.paciente.PacienteSalidaDto;
 import com.backend.clinicaodontologica.dto.salida.turno.TurnoSalidaDto;
 import com.backend.clinicaodontologica.exceptions.ResourceNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.MethodOrderer;
+
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.parallel.Execution;
-import org.junit.jupiter.api.parallel.ExecutionMode;
+
+import org.junit.runner.OrderWith;
+import org.junit.runner.manipulation.Alphanumeric;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.annotation.Order;
@@ -26,8 +26,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@Execution(ExecutionMode.SAME_THREAD)
+@OrderWith(Alphanumeric.class)
 class TurnoServiceTest {
 
     PacienteEntradaDto paciente1;
@@ -85,7 +84,7 @@ class TurnoServiceTest {
 
     @Test
     @Order(3)
-    void deberiaEncontrarUnTurnoConId1() {
+    void seEsperaEncontrarUnTurnoConId1() {
         TurnoSalidaDto turnoEncontrado = turnoService.buscarTurnoPorId(1L);
         assertNotNull(turnoEncontrado.getId(), "El turno es nulo");
         assertEquals(1, turnoEncontrado.getId(), "El ID del turno encontrado no coincide con el ID esperado");
